@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="izh5i1im">
+  <resources>
+    <component id="gcoi0" name="main.xml" path="/" exported="true"/>
+    <image id="gcoi4" name="intro_bj5_1.jpg" path="/images/intro_bj/"/>
+    <image id="gcoi5" name="intro_bj5_2.jpg" path="/images/intro_bj/"/>
+    <image id="gcoi6" name="intro_bj5_3.jpg" path="/images/intro_bj/"/>
+    <image id="gcoia" name="intro_bj1.png" path="/images/intro_bj/"/>
+    <image id="gcoib" name="intro_bj2_1.png" path="/images/intro_bj/"/>
+    <image id="gcoic" name="intro_bj2_2.png" path="/images/intro_bj/"/>
+    <image id="gcoid" name="intro_bj2_4.png" path="/images/intro_bj/"/>
+    <image id="gcoie" name="intro_bj2.png" path="/images/intro_bj/"/>
+    <image id="gcoif" name="intro_bj3_1.png" path="/images/intro_bj/"/>
+    <image id="gcoig" name="intro_bj3_2.png" path="/images/intro_bj/"/>
+    <image id="gcoih" name="intro_bj3_3.png" path="/images/intro_bj/"/>
+    <image id="gcoii" name="intro_bj3_4.png" path="/images/intro_bj/"/>
+    <image id="gcoij" name="intro_bj3.png" path="/images/intro_bj/"/>
+    <image id="gcoik" name="intro_bj4_2.png" path="/images/intro_bj/"/>
+    <image id="gcoil" name="intro_bj4_3.png" path="/images/intro_bj/"/>
+    <image id="gcoim" name="intro_bj4_4.png" path="/images/intro_bj/"/>
+    <image id="gcoin" name="intro_bj4_5.png" path="/images/intro_bj/"/>
+    <image id="gcoio" name="intro_bj4.png" path="/images/intro_bj/"/>
+    <image id="gcoip" name="intro_bj5.png" path="/images/intro_bj/"/>
+    <image id="hu25q" name="black1.png" path="/images/page_home/"/>
+    <image id="hu25r" name="black2.png" path="/images/page_home/"/>
+    <image id="hu25s" name="intro_diyushaluchang.png" path="/images/page_home/"/>
+    <image id="hu25t" name="dragon.png" path="/images/page_home/"/>
+    <image id="hu25u" name="ditu_2zizi.png" path="/images/page_home/"/>
+    <image id="hu25v" name="intro_BattleCampaign.png" path="/images/page_home/"/>
+    <image id="hu25w" name="intro_chests_1.png" path="/images/page_home/"/>
+    <image id="hu25y" name="intro_fuzou.png" path="/images/page_home/"/>
+    <image id="hu25z" name="intro_haishang.png" path="/images/page_home/"/>
+    <image id="hu2510" name="intro_MilitaryRank.png" path="/images/page_home/"/>
+    <image id="hu2511" name="intro_sanctuary.png" path="/images/page_home/"/>
+    <image id="hu2512" name="intro_yingxiong.png" path="/images/page_home/"/>
+    <image id="hu2513" name="moyan.png" path="/images/page_home/"/>
+    <image id="hu2514" name="shitou.png" path="/images/page_home/"/>
+    <image id="hu2515" name="zhanchang2.png" path="/images/page_home/"/>
+    <image id="hu2516" name="intro_Elite.png" path="/images/page_home/"/>
+    <image id="hu2517" name="intro_hl.png" path="/images/page_home/"/>
+    <image id="hu2518" name="intro_paihangbang_zhuzi.png" path="/images/page_home/"/>
+    <image id="hu2519" name="Intro_shangdianfei.png" path="/images/page_home/"/>
+    <image id="hu251a" name="Intro_SunWell.png" path="/images/page_home/"/>
+    <image id="hu251b" name="Intro_yinkuang.png" path="/images/page_home/"/>
+    <image id="hu251c" name="add_jianzhu.png" path="/images/page_home/"/>
+    <image id="hu251d" name="intro_fort.png" path="/images/page_home/"/>
+    <image id="hu251f" name="intro_huoren.png" path="/images/page_home/"/>
+    <image id="hu251g" name="intro_tianshishengjian.png" path="/images/page_home/"/>
+    <component id="pd301i" name="btn_rank.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

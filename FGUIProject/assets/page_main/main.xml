@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,640">
+  <displayList>
+    <image id="n3_gcoi" name="n3" src="gcoi6" fileName="images/intro_bj/intro_bj5_3.jpg" xy="1072,-80" scale="1.25,1.25"/>
+    <image id="n1_gcoi" name="n1" src="gcoi4" fileName="images/intro_bj/intro_bj5_1.jpg" xy="-1072,-80" scale="1.25,1.25"/>
+    <image id="n2_gcoi" name="n2" src="gcoi5" fileName="images/intro_bj/intro_bj5_2.jpg" xy="0,-80" scale="1.25,1.25"/>
+    <image id="n4_jsf8" name="n4" src="gcoik" fileName="images/intro_bj/intro_bj4_2.png" xy="-1044,190"/>
+    <image id="n5_jsf8" name="n5" src="gcoil" fileName="images/intro_bj/intro_bj4_3.png" xy="-20,190"/>
+    <image id="n7_jsf8" name="n7" src="gcoim" fileName="images/intro_bj/intro_bj4_4.png" xy="1004,190"/>
+    <image id="n8_jsf8" name="n8" src="gcoin" fileName="images/intro_bj/intro_bj4_5.png" xy="2028,190"/>
+    <image id="n9_jsf8" name="n9" src="gcoia" fileName="images/intro_bj/intro_bj1.png" xy="-1025,270"/>
+    <image id="n10_jsf8" name="n10" src="gcoie" fileName="images/intro_bj/intro_bj2.png" xy="0,270"/>
+    <image id="n11_jsf8" name="n11" src="gcoij" fileName="images/intro_bj/intro_bj3.png" xy="1024,270"/>
+    <image id="n16_jsf8" name="n16" src="gcoid" fileName="images/intro_bj/intro_bj2_4.png" xy="25,494"/>
+    <image id="n13_jsf8" name="n13" src="gcoip" fileName="images/intro_bj/intro_bj5.png" xy="1212,308"/>
+    <image id="n14_jsf8" name="n14" src="gcoih" fileName="images/intro_bj/intro_bj3_3.png" xy="230,400"/>
+    <image id="n15_jsf8" name="n15" src="gcoig" fileName="images/intro_bj/intro_bj3_2.png" xy="-6,418"/>
+    <image id="n17_jsf8" name="n17" src="gcoif" fileName="images/intro_bj/intro_bj3_1.png" xy="-1028,418"/>
+    <image id="n18_jsf8" name="n18" src="gcoii" fileName="images/intro_bj/intro_bj3_4.png" xy="1190,400"/>
+    <image id="n58_hu25" name="n58" src="hu251a" fileName="images/page_home/Intro_SunWell.png" xy="-17,-12"/>
+    <image id="n59_hu25" name="n59" src="hu2519" fileName="images/page_home/Intro_shangdianfei.png" xy="63,47"/>
+    <image id="n60_hu25" name="n60" src="hu251b" fileName="images/page_home/Intro_yinkuang.png" xy="39,99"/>
+    <image id="n61_hu25" name="n61" src="hu251c" fileName="images/page_home/add_jianzhu.png" xy="187,161"/>
+    <image id="n62_hu25" name="n62" src="hu25q" fileName="images/page_home/black1.png" xy="206,243"/>
+    <image id="n63_hu25" name="n63" src="hu25r" fileName="images/page_home/black2.png" xy="-4,55"/>
+    <image id="n64_hu25" name="n64" src="hu25u" fileName="images/page_home/ditu_2zizi.png" xy="-20,108"/>
+    <image id="n65_hu25" name="n65" src="hu25t" fileName="images/page_home/dragon.png" xy="72,128"/>
+    <image id="n66_hu25" name="n66" src="hu25v" fileName="images/page_home/intro_BattleCampaign.png" xy="114,180"/>
+    <image id="n67_hu25" name="n67" src="hu2516" fileName="images/page_home/intro_Elite.png" xy="155,199"/>
+    <image id="n68_hu25" name="n68" src="hu2510" fileName="images/page_home/intro_MilitaryRank.png" xy="185,3"/>
+    <image id="n69_hu25" name="n69" src="hu25w" fileName="images/page_home/intro_chests_1.png" xy="303,-5"/>
+    <image id="n70_hu25" name="n70" src="hu25s" fileName="images/page_home/intro_diyushaluchang.png" xy="322,39"/>
+    <image id="n71_hu25" name="n71" src="hu251d" fileName="images/page_home/intro_fort.png" xy="409,130"/>
+    <image id="n72_hu25" name="n72" src="hu25y" fileName="images/page_home/intro_fuzou.png" xy="425,192"/>
+    <image id="n73_hu25" name="n73" src="hu25z" fileName="images/page_home/intro_haishang.png" xy="462,236"/>
+    <image id="n74_hu25" name="n74" src="hu2517" fileName="images/page_home/intro_hl.png" xy="199,75"/>
+    <image id="n75_hu25" name="n75" src="hu251f" fileName="images/page_home/intro_huoren.png" xy="206,79"/>
+    <image id="n76_hu25" name="n76" src="hu2518" fileName="images/page_home/intro_paihangbang_zhuzi.png" xy="243,120"/>
+    <image id="n77_hu25" name="n77" src="hu2511" fileName="images/page_home/intro_sanctuary.png" xy="254,156"/>
+    <image id="n78_hu25" name="n78" src="hu251g" fileName="images/page_home/intro_tianshishengjian.png" xy="447,5"/>
+    <image id="n79_hu25" name="n79" src="hu2512" fileName="images/page_home/intro_yingxiong.png" xy="434,10"/>
+    <image id="n80_hu25" name="n80" src="hu2513" fileName="images/page_home/moyan.png" xy="483,56"/>
+    <image id="n81_hu25" name="n81" src="hu2514" fileName="images/page_home/shitou.png" xy="494,101"/>
+    <image id="n82_hu25" name="n82" src="hu2515" fileName="images/page_home/zhanchang2.png" xy="593,159"/>
+    <component id="n84_pd30" name="btn_rank" src="pd301i" fileName="btn_rank.xml" xy="796,46"/>
+  </displayList>
+</component>

@@ -1,0 +1,11 @@
+# QIdea WOW project files
+~$*.docx
+~$*.xlsx
+
+output/*
+debug.log
+
+build-android
+build-ios
+build-mac
+build-win32

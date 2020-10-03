@@ -1,5 +1,5 @@
 
-local Component = import("..Component")
+local Component = import(".Component")
 local EventProtocol = class("EventProtocol", Component)
 
 function EventProtocol:ctor()

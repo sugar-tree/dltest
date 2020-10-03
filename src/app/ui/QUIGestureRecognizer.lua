@@ -18,13 +18,13 @@ QUIGestureRecognizer.IGNORE_INERTIA = 0.3
 
 function QUIGestureRecognizer:ctor(options)
 	cc.GameObject.extend(self)
-    self:addComponent("components.behavior.EventProtocol"):exportMethods()
+    self:addComponent("framework.components.EventProtocol"):exportMethods()
 
     if options == nil then options = {} end
     -- 滑动距离调节系数
     self._rate = 0.3
     self._isSlide = false
-    self._isColor = options.color
+    self._isColor = options.color or true
 end
 
 -- node: add touch layer to node's child
@@ -50,46 +50,40 @@ function QUIGestureRecognizer:attachToNode(node, width, height, offsetX, offsetY
 	end
 	self._callback = callback
 	if self._isColor == true then
-		self._touchLayer = CCLayerColor:create(ccc4(255,0,0,120))
+		self._touchLayer = cc.LayerColor:create(cc.c4b(255,0,0,120))
 	else
-		self._touchLayer = CCNode:create()
+		self._touchLayer = cc.Node:create()
 	end
 	node:addChild(self._touchLayer)
 	self._touchLayer:setPosition(offsetX, offsetY)
 
 	local offsetP = nil
 	if self._mainMenu then
-	    offsetP = ccp(node:getPosition())
+	    offsetP = cc.p(node:getPosition())
 	    local parentNode = node:getParent()
 	    if parentNode ~= nil then
 	    	offsetP = parentNode:convertToWorldSpaceAR(offsetP)
 		else
-			offsetP = ccp(0,0)
+			offsetP = cc.p(0,0)
 	    end
 	else    
-		offsetP = node:convertToWorldSpaceAR(ccp(0,0))
-	    -- local parentNode = node:getParent()
-	    -- if parentNode ~= nil then
-	    --     offsetP = parentNode:convertToWorldSpaceAR(offsetP)
-	    -- else
-	    --     offsetP = ccp(0,0)
-	    -- end
+		offsetP = node:convertToWorldSpaceAR(cc.p(0,0))
 	end
 
-	self._touchRect = CCRect(offsetP.x + offsetX, offsetP.y + offsetY, width, height)
+	self._touchRect = cc.rect(offsetP.x + offsetX, offsetP.y + offsetY, width, height)
 
 	-- touch event
-	self._touchLayer:setCascadeBoundingBox(CCRect(0, 0, display.width, display.height))
+	self._touchLayer:setContentSize(cc.size(display.width, display.height))
     self._touchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
     self._touchLayer:setTouchSwallowEnabled(false)
     self._touchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, QUIGestureRecognizer._onTouch))
 
 	if self._isColor == true then
-		local testLayer = CCLayerColor:create(ccc4(0,255,0,120))
-		testLayer:setContentSize(CCSize(width,height))
+		local testLayer = cc.LayerColor:create(cc.c4b(0,255,0,120))
+		testLayer:setContentSize(cc.size(width,height))
 		printInfo("offsetP.x: %s  offsetP.y: %s  offsetX: %s  offsetY: %s",offsetP.x,offsetP.y,offsetX,offsetY)
 		testLayer:setPosition(offsetP.x + offsetX, offsetP.y + offsetY)
-		app._uiScene:addChild(testLayer)
+		node:addChild(testLayer)
 	end
 end
 
@@ -128,7 +122,7 @@ function QUIGestureRecognizer:setAttachSlide(b)
 end
 
 function QUIGestureRecognizer:_onTouch(event)
-	if event.name == "began" and self._touchRect:containsPoint(ccp(event.x, event.y)) == true then
+	if event.name == "began" and cc.rectContainsPoint( self._touchRect, event ) == true then
     	self._touchBegin = true
 	end
     if self._touchBegin ~= true then
@@ -159,7 +153,7 @@ function QUIGestureRecognizer:onTouchBegin(x, y)
 
 	-- slide 滑动
 	if self._isSlide then
-		self._startValue = ccp(x,y)
+		self._startValue = cc.p(x,y)
 		self._endValue = self._startValue
 		self._touchXStartTime = q.time()
 		self._touchYStartTime = self._touchXStartTime
@@ -168,7 +162,6 @@ function QUIGestureRecognizer:onTouchBegin(x, y)
 end
 
 function QUIGestureRecognizer:onTouchMove(x, y)
-
 	-- slide 滑动
 	if self._isSlide then
 		if self._endValue ~= nil then
@@ -181,7 +174,7 @@ function QUIGestureRecognizer:onTouchMove(x, y)
 				self._touchYStartTime = q.time()
 			end
 		end
-		self._endValue = ccp(x,y)
+		self._endValue = cc.p(x,y)
 	end
 end
 
@@ -237,7 +230,7 @@ function QUIGestureRecognizer:onTouchEnd(x, y)
 				offsetYTime = 0.5/(currentTime - self._touchYStartTime) * self._rate
 			end
 		end
-		local offsetDistance = ccp((self._endValue.x - self._startValue.x) * offsetXTime , (self._endValue.y - self._startValue.y) * offsetYTime )
+		local offsetDistance = cc.p((self._endValue.x - self._startValue.x) * offsetXTime , (self._endValue.y - self._startValue.y) * offsetYTime )
 		self:dispatchEvent({name = QUIGestureRecognizer.EVENT_SLIDE_GESTURE, distance = offsetDistance})
 	end
 end

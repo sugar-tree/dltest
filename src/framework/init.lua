@@ -24,6 +24,7 @@ audio      = require(cc.PACKAGE_NAME .. ".audio")
 network    = require(cc.PACKAGE_NAME .. ".network")
 crypto     = require(cc.PACKAGE_NAME .. ".crypto")
 json       = require(cc.PACKAGE_NAME .. ".json")
+scheduler  = require(cc.PACKAGE_NAME .. ".scheduler")
 require(cc.PACKAGE_NAME .. ".shortcodes")
 require(cc.PACKAGE_NAME .. ".NodeEx")
 require(cc.PACKAGE_NAME .. ".WidgetEx")
@@ -36,6 +37,10 @@ elseif device.platform == "mac" then
     require(cc.PACKAGE_NAME .. ".platform.mac")
 end
 
+cc.component       = require(cc.PACKAGE_NAME .. ".components.Component")
+cc.EventProxy      = require(cc.PACKAGE_NAME .. ".components.EventProxy")
+cc.GameObject      = require(cc.PACKAGE_NAME .. ".components.GameObject")
+cc.registry        = require(cc.PACKAGE_NAME .. ".components.Registry")
 
 local sharedTextureCache = cc.Director:getInstance():getTextureCache()
 local sharedDirector = cc.Director:getInstance()

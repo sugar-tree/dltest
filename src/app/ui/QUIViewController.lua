@@ -1,26 +1,19 @@
 
-local QUIViewController = class("QUIViewController", function()
-    return ccui.Layout:create()
-end)
+local QUIViewController = class("QUIViewController")
 
 QUIViewController.TYPE_PAGE = "UI_TYPE_PAGE"
 QUIViewController.TYPE_DIALOG = "UI_TYPE_DIALOG"
 
 function QUIViewController:ctor(type, fguiFile, resName, callbacks, options)
     self.__type = type
-
-    -- tips
-    self._fairyRoot = fairygui.GRoot:create(display.getRunningScene())
-    self._fairyRoot:retain()
+    self._fguiOwner = {}
 
     if fguiFile and resName then
         fairygui.UIPackage:addPackage("fairygui/"..fguiFile);
         self._view = fairygui.UIPackage:createObject(fguiFile, resName)
-        self._view:setOpaque(false) -- ignore touch
         if self._view == nil then
             assert(false, "load fguiFile:" .. fguiFile .. " faild!")
         end
-        self._fairyRoot:addChild(self._view)
     else
         self._view = cc.Node:create()
     end
@@ -31,7 +24,6 @@ function QUIViewController:ctor(type, fguiFile, resName, callbacks, options)
     end
     
     -- 节点
-    self._fguiOwner = {}
     local childList = self._view:getChildren()
     for i, child in pairs(childList) do
         self._fguiOwner[child.name] = child

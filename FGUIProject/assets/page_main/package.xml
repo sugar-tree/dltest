@@ -46,7 +46,8 @@
     <image id="hu251d" name="intro_fort.png" path="/images/page_home/"/>
     <image id="hu251f" name="intro_huoren.png" path="/images/page_home/"/>
     <image id="hu251g" name="intro_tianshishengjian.png" path="/images/page_home/"/>
-    <component id="pd301i" name="btn_rank.xml" path="/"/>
+    <component id="xcc01l" name="btn_instance.xml" path="/buttons/"/>
+    <component id="xcc01m" name="btn_sunwell.xml" path="/buttons/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

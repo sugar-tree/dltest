@@ -864,3 +864,28 @@ function string.formatnumberthousands(num)
     end
     return formatted
 end
+
+
+function printTable(t, prefix, deep)
+    if DEBUG > 0 and t ~= nil and type(t) == "table" then
+        if prefix == nil then
+            prefix = ""
+        end
+        print(prefix .. "{")
+        local newPrefix = prefix .. "    "
+        for k, v in pairs(t) do
+            if type(v) == "table" then
+                print(newPrefix .. tostring(k) .. ": ")
+                local p = newPrefix
+                if deep == nil then
+                    printTable(v, p, deep)
+                elseif deep > 0 then
+                    printTable(v, p, deep - 1)
+                end
+            else
+                print(newPrefix .. tostring(k) .. ": " .. tostring(v) .. "") 
+            end
+        end
+        print(prefix .. "}")
+    end
+end

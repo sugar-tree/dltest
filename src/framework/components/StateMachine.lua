@@ -1,5 +1,5 @@
 
-local Component = import("..Component")
+local Component = import(".Component")
 local StateMachine = class("StateMachine", Component)
 
 --[[--

@@ -2,8 +2,8 @@
 local QUIViewController = import("..QUIViewController")
 local QUIPage = class("QUIPage", QUIViewController)
 
-function QUIPage:ctor(ccbFile,callBacks,options)
-	QUIPage.super.ctor(self, QUIViewController.TYPE_PAGE, ccbFile, callBacks, options)
+function QUIPage:ctor(fguiFile, resName, callbacks, options)
+	QUIPage.super.ctor(self, QUIViewController.TYPE_PAGE, fguiFile, resName, callbacks, options)
     self:setOptions(options)
 end
 

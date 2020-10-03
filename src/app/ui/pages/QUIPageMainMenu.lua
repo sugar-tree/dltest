@@ -2,12 +2,16 @@ local QUIPage = import(".QUIPage")
 local QUIPageMainMenu = class("QUIPageMainMenu", QUIPage)
 
 local QUIGestureRecognizer = import("..QUIGestureRecognizer")
+local QNotificationCenter = import("...controllers.QNotificationCenter")
+local QUIViewController = import("..QUIViewController")
+
 
 function QUIPageMainMenu:ctor(options)
     local fguiFile = "page_main"
 	local resName = "main"
     local callbacks = {
-        {childName = "btn_rank", callback = handler(self, self._onTriggerRank)},
+        {childName = "btn_instance", callback = handler(self, self._onTriggerInstance)},
+        {childName = "btn_sunwell", callback = handler(self, self._onTriggerSunwell)},
     }
     QUIPageMainMenu.super.ctor(self, fguiFile, resName, callbacks, options)
 
@@ -16,6 +20,12 @@ function QUIPageMainMenu:ctor(options)
     self._touchLayer:setSlideRate(0.3)
     self._touchLayer:setAttachSlide(true)
     self._touchLayer:attachToNode(self:getView(), display.width, display.height, 0, 0, handler(self, self._onTouch))
+    
+    self._isMoveing = false
+    self._totalWidth = self._fguiOwner.node_near:getWidth()
+    self._minLeftX = self._fguiOwner.node_near:getX()
+
+    self:viewDidAppear()
 end
 
 function QUIPageMainMenu:viewDidAppear()
@@ -34,40 +44,105 @@ function QUIPageMainMenu:viewWillDisappear()
 end
 
 function QUIPageMainMenu:_onTouch(event)
-    print(event)
-    -- if event.name == "began" then
-    --     self._sliderTemp = 0
-    --     self._lastSlidePositionX = event.x
-    --     self._farPositionX = self._ccbOwner.node_far:getPositionX()
-    --     self._farPosition2X = self._ccbOwner.node_far2:getPositionX()
-    --     self._farPosition3X = self._ccbOwner.node_far3:getPositionX()
-    --     self._midPositionX = self._ccbOwner.node_mid:getPositionX()
-    --     self._topPositionX = self._ccbOwner.node_top:getPositionX()
-    --     self._farNearPositionX = self._ccbOwner.node_far_near:getPositionX()
-    --     self:_removeAction()
-    --     return true
-    -- elseif event.name == "moved" then
-    --     self:screenMove(event.x - self._lastSlidePositionX, false)
-    --     if self._isMoveing ~= true and math.abs(event.x - self._lastSlidePositionX) > 10 then
-    --         self._isMoveing = true
-    --     end
-    -- elseif event.name == "ended" or event.name == "cancelled" then
-    --     scheduler.performWithDelayGlobal(function ()
-    --         self._isMoveing = false
-    --     end, 0)
-    -- elseif event.name == QUIGestureRecognizer.EVENT_SLIDE_GESTURE then
-    --     self._farPositionX = self._ccbOwner.node_far:getPositionX()
-    --     self._farPosition2X = self._ccbOwner.node_far2:getPositionX()
-    --     self._farPosition3X = self._ccbOwner.node_far3:getPositionX()
-    --     self._midPositionX = self._ccbOwner.node_mid:getPositionX()
-    --     self._topPositionX = self._ccbOwner.node_top:getPositionX()
-    --     self._farNearPositionX = self._ccbOwner.node_far_near:getPositionX()
-    --     self:screenMove(event.distance.x, true)
-    -- end
+    if event.name == "began" then
+        self._lastPositionX = event.x
+        self._skyPositionX = self._fguiOwner.node_sky:getX()
+        self._farPositionX = self._fguiOwner.node_far:getX()
+        self._midPositionX = self._fguiOwner.node_mid:getX()
+        self._nearPositionX = self._fguiOwner.node_near:getX()
+        self:_removeAction()
+        return true
+    elseif event.name == "moved" then
+        self:screenMove(event.x - self._lastPositionX, false)
+        if not self._isMoveing and math.abs(event.x - self._lastPositionX) > 10 then
+            self._isMoveing = true
+        end
+    elseif event.name == "ended" or event.name == "cancelled" then
+        self:performWithDelay(function ()
+            self._isMoveing = false
+        end, 0)
+    elseif event.name == QUIGestureRecognizer.EVENT_SLIDE_GESTURE then
+        self._skyPositionX = self._fguiOwner.node_sky:getX()
+        self._farPositionX = self._fguiOwner.node_far:getX()
+        self._midPositionX = self._fguiOwner.node_mid:getX()
+        self._nearPositionX = self._fguiOwner.node_near:getX()
+        self:screenMove(event.distance.x, true)
+    end
 end
 
-function QUIPageMainMenu:_onTriggerRank(context)
-    print("-----context--",context)
+--滑动距离，是否有惯性
+function QUIPageMainMenu:screenMove(distance, isSlider)
+    if (self._nearPositionX + distance) > 0 then
+        return
+    end
+    if (self._nearPositionX + distance) < ( CONFIG_SCREEN_WIDTH - self._totalWidth) then
+        return
+    end
+
+    --远景移动
+    local skyDistance = distance*0.5
+    local farDistance = distance*0.7
+    local midDistance = distance*0.9
+    local nearDistance = distance
+    if isSlider == false then
+        self._fguiOwner.node_sky:setPosition(self._skyPositionX + skyDistance, self._fguiOwner.node_sky:getY())
+        self._fguiOwner.node_far:setPosition(self._farPositionX + farDistance, self._fguiOwner.node_far:getY())
+        self._fguiOwner.node_mid:setPosition(self._midPositionX + midDistance, self._fguiOwner.node_mid:getY())
+        self._fguiOwner.node_near:setPosition(self._nearPositionX + nearDistance, self._fguiOwner.node_near:getY())
+    else
+        self._actionHandler1 = self:_contentRunAction(self._fguiOwner.node_sky, self._skyPositionX + skyDistance, self._fguiOwner.node_sky:getY())
+        self._actionHandler2 = self:_contentRunAction(self._fguiOwner.node_far, self._farPositionX + farDistance, self._fguiOwner.node_far:getY())
+        self._actionHandler3 = self:_contentRunAction(self._fguiOwner.node_mid, self._midPositionX + midDistance, self._fguiOwner.node_mid:getY())
+        self._actionHandler4 = self:_contentRunAction(self._fguiOwner.node_near, self._nearPositionX + nearDistance, self._fguiOwner.node_near:getY())
+    end
+end
+
+function QUIPageMainMenu:_contentRunAction(node, posX, posY)
+    node:setPosition(posX, posY)
+    -- local moveTo = cc.MoveTo:create(1.3, cc.p(posX,posY))
+    -- local speed = cc.EaseExponentialOut:create(moveTo)
+    -- local callback = cc.CallFunc:create(function ()
+    --     self:_removeAction()
+    -- end)
+    -- local sequence = cc.Sequence:create(speed, callback)
+    -- return tolua.cast(node, "cc.Node"):runAction(sequence)
+
+    -- local moveTo = cc.MoveTo:create(1.3, cc.p(posX,posY))
+    -- local speed = cc.EaseExponentialOut:create(moveTo)
+    -- local callback = cc.CallFunc:create(function ()
+    --     self:_removeAction()
+    -- end)
+    -- local sequence = cc.Sequence:create(speed, callback)
+    -- return node:runAction(moveTo)
+end
+
+function QUIPageMainMenu:_removeAction()
+    if self._actionHandler1 ~= nil then
+        self._ccbOwner.node_sky:stopAction(self._actionHandler1)
+        self._actionHandler1 = nil
+    end
+    if self._actionHandler2 ~= nil then
+        self._ccbOwner.node_sky:stopAction(self._actionHandler2)
+        self._actionHandler2 = nil
+    end
+    if self._actionHandler3 ~= nil then
+        self._ccbOwner.node_sky:stopAction(self._actionHandler3)
+        self._actionHandler3 = nil
+    end
+    if self._actionHandler4 ~= nil then
+        self._ccbOwner.node_sky:stopAction(self._actionHandler4)
+        self._actionHandler4 = nil
+    end
+end
+
+function QUIPageMainMenu:_onTriggerInstance(context)
+    print("-----_onTriggerInstance--",context, app.mainUILayer)
+    
+    app:getNavigationManager():pushViewController(app.mainUILayer, {uiType = QUIViewController.TYPE_DIALOG, uiClass = "QUIDialogInstance"})
+end
+
+function QUIPageMainMenu:_onTriggerSunwell(context)
+    print("-----_onTriggerSunwell--",context)
 end
 
 return QUIPageMainMenu

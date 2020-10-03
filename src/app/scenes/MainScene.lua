@@ -2,6 +2,8 @@ local MainScene = class("MainScene", function()
     return display.newScene("MainScene")
 end)
 
+local QUIViewController = import("..ui.QUIViewController")
+
 function MainScene:ctor()
 	local tests = {
 		-- "Test_NodeFrameEvent",
@@ -36,7 +38,7 @@ function MainScene:ctor()
 		btn:addTouchEventListener(function(sender, eventType)
 			if 2 == eventType then
 				scrollView:setVisible(false)
-				app:createPage(tests[i]):addTo(self)
+    			app:getNavigationManager():pushViewController(app.mainUILayer, {uiType=QUIViewController.TYPE_PAGE, uiClass="QUIPageMainMenu"})
 			end
 		end)
 		if not btnSize then

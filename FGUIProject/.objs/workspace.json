@@ -1,12 +1,13 @@
 {
   "libview.firstColumnWidth": 283,
+  "gridSize": 50,
   "libview.iconScale": 0,
   "doc.openedDocs": [
     "ui://izh5i1imgcoi0",
     "ui://izh5i1impd301i",
     "ui://iec90rl1hu250"
   ],
-  "auxline1": true,
+  "test.device": "iPhone 5",
   "canvasColor": 10066329,
   "auxline2": true,
   "doc.activeDoc": "ui://izh5i1imgcoi0",
@@ -16,15 +17,14 @@
     "/",
     "izh5i1im",
     "/images/",
-    "izh5i1im",
-    "/images/page_home/",
     "iec90rl1",
     "/"
   ],
   "showGrid": true,
   "snapToGrid": false,
+  "test.orientation": "landscape",
   "backgroundColor": 6710886,
   "libview.currentGroup": "",
-  "gridSize": 50,
+  "auxline1": true,
   "gridColor": 80
 }

@@ -16,8 +16,3 @@ require "cocos.spine.SpineConstants"
 require "cocos.physics3d.physics3d-constants"
 -- fairygui
 require "cocos.fairygui.FairyGUIConstants"
-
--- init base classes
--- cc.Registry   = import(".Registry")
--- cc.GameObject = import(".GameObject")
--- cc.EventProxy = import(".EventProxy")

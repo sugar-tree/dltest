@@ -1,7 +1,10 @@
 
 local AppBase = class("AppBase")
 
-function AppBase:ctor()
+function AppBase:ctor(appName, packageRoot)
+    self.name = appName
+    self.packageRoot = packageRoot or "app"
+
     local eventDispatcher = cc.Director:getInstance():getEventDispatcher()
     local customListenerBg = cc.EventListenerCustom:create("APP_ENTER_BACKGROUND_EVENT", function()
 		Rapid2D_CAudio.pause() -- stop OpenAL backend thread

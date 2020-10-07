@@ -57,34 +57,14 @@ function QUIGestureRecognizer:attachToNode(node, width, height, offsetX, offsetY
 	node:addChild(self._touchLayer)
 	self._touchLayer:setPosition(offsetX, offsetY)
 
-	local offsetP = nil
-	if self._mainMenu then
-	    offsetP = cc.p(node:getPosition())
-	    local parentNode = node:getParent()
-	    if parentNode ~= nil then
-	    	offsetP = parentNode:convertToWorldSpaceAR(offsetP)
-		else
-			offsetP = cc.p(0,0)
-	    end
-	else    
-		offsetP = node:convertToWorldSpaceAR(cc.p(0,0))
-	end
-
-	self._touchRect = cc.rect(offsetP.x + offsetX, offsetP.y + offsetY, width, height)
+	local offsetP = node:convertToWorldSpaceAR(cc.p(0,0))
+	self._touchRect = cc.rect(offsetP.x + offsetX, offsetP.y, width, height)
 
 	-- touch event
 	self._touchLayer:setContentSize(cc.size(display.width, display.height))
     self._touchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
     self._touchLayer:setTouchSwallowEnabled(false)
     self._touchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, QUIGestureRecognizer._onTouch))
-
-	if self._isColor == true then
-		local testLayer = cc.LayerColor:create(cc.c4b(0,255,0,120))
-		testLayer:setContentSize(cc.size(width,height))
-		printInfo("offsetP.x: %s  offsetP.y: %s  offsetX: %s  offsetY: %s",offsetP.x,offsetP.y,offsetX,offsetY)
-		testLayer:setPosition(offsetP.x + offsetX, offsetP.y + offsetY)
-		node:addChild(testLayer)
-	end
 end
 
 -- 设置滑动系数

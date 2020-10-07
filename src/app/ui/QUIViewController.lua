@@ -8,26 +8,35 @@ function QUIViewController:ctor(type, fguiFile, resName, callbacks, options)
     self.__type = type
     self._fguiOwner = {}
 
+    self._view = fairygui.GComponent:create()
+
+    self._viewBackNode = fairygui.GObject:create()
+    self._view:addChild(self._viewBackNode)
+
+    self._gComponent = nil
     if fguiFile and resName then
-        fairygui.UIPackage:addPackage("fairygui/"..fguiFile);
-        self._view = fairygui.UIPackage:createObject(fguiFile, resName)
-        if self._view == nil then
+        fairygui.UIPackage:addPackage("fairygui/"..fguiFile)
+        self._gComponent = fairygui.UIPackage:createObject(fguiFile, resName)
+        if self._gComponent == nil then
             assert(false, "load fguiFile:" .. fguiFile .. " faild!")
         end
-    else
-        self._view = cc.Node:create()
+
+        -- 回调函数
+        if callbacks ~= nil then
+            self:_setFGUICallbacks(callbacks)
+        end
+        
+        -- 节点
+        local childList = self._gComponent:getChildren()
+        for i, child in pairs(childList) do
+            self._fguiOwner[child.name] = child
+        end
+        self._view:addChild(self._gComponent)
     end
 
-    -- 回调函数
-    if callbacks ~= nil then
-        self:_setFGUICallbacks(callbacks)
-    end
-    
-    -- 节点
-    local childList = self._view:getChildren()
-    for i, child in pairs(childList) do
-        self._fguiOwner[child.name] = child
-    end
+
+    self._viewFrontNode = fairygui.GObject:create()
+    self._view:addChild(self._viewFrontNode)
 
     self._parentViewController = nil
     self._subViewControllers = {}
@@ -39,6 +48,14 @@ end
 
 function QUIViewController:getView()
     return self._view
+end
+
+function QUIViewController:getBackRoot()
+    return self._viewBackNode:displayObject()
+end
+
+function QUIViewController:getRoot()
+    return self._viewFrontNode:displayObject()
 end
 
 function QUIViewController:setParentController(controller)
@@ -172,7 +189,7 @@ function QUIViewController:_removeViewSubView(view)
         return
     end
 
-    self._view:removeChild(view, true)
+    self._view:removeChild(view)
 end
 
 function QUIViewController:_setFGUICallbacks(callbacks)
@@ -180,10 +197,14 @@ function QUIViewController:_setFGUICallbacks(callbacks)
         local childName = v.childName
         local callback = v.callback
         if childName ~= nil and callback ~= nil then
-            local btn = self._view:getChild(childName)
-            btn:addEventListener(fairygui.UIEventType.TouchEnd, function(context)
-                callback(context)
-            end)
+            local btn = self._gComponent:getChild(childName)
+            if btn then
+                btn:addEventListener(fairygui.UIEventType.TouchEnd, function(context)
+                    callback(context)
+                end)
+            else
+                print("no btn named "..childName)
+            end
         end
     end
 end

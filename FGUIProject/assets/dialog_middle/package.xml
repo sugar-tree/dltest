@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="ow5vk5a2">
+  <resources>
+    <component id="mc9p0" name="main.xml" path="/" exported="true"/>
+    <image id="mc9p1" name="btn_close.png" path="/"/>
+    <image id="mc9p2" name="dialog_frame.png" path="/" scale="9grid" scale9grid="23,23,46,46"/>
+    <component id="mc9p3" name="btn_close.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

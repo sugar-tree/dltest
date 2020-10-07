@@ -41,10 +41,9 @@ function QUITransition:start()
 
     self:dispatchEvent({name = QUITransition.EVENT_TRANSITION_START, transition = self, controller = self.controller})
 
-    self:performWithDelay(function()
+    scheduler.performWithDelayGlobal(function()
        self:finished()
    	end, 0)
-    
 end
 
 function QUITransition:finished()

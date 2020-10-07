@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,640">
+  <displayList>
+    <image id="n1_mc9p" name="n1" src="mc9p2" fileName="dialog_frame.png" xy="168,80" size="800,480"/>
+    <component id="n2_mc9p" name="n2" src="mc9p3" fileName="btn_close.xml" xy="920,59"/>
+  </displayList>
+</component>

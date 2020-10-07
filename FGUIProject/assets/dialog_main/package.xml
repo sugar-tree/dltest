@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="op2p5mu4">
+  <resources>
+    <component id="mc9p0" name="main.xml" path="/" exported="true"/>
+    <image id="hu252" name="sanctuary.jpg" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

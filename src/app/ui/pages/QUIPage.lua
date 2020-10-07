@@ -25,7 +25,7 @@ function QUIPage:addSubViewController(controller)
     table.insert(self._subViewControllers, controller)
     self:_addViewSubView(controller:getView())
     if controller.playEffectIn then
-      controller:playEffectIn()
+        controller:playEffectIn()
     end
     controller:viewDidAppear() 
 end
@@ -55,30 +55,8 @@ function QUIPage:setOptions(options)
     self._options = options
 end
 
-function QUIPage:_addViewSubView(view)
-    if view == nil then
-        return
-    end
-
-    if self._view == nil then
-        assert(false, "self view is invalid!")
-        return
-    end
-
-	 self._view:addChild(view)
-end
-
 function QUIPage:onBackPage()
     -- body
 end
-
-function QUIPage:setChatButton()
-    -- body
-end
-
-function QUIPage:setChatButtonZOrder()
-    -- body
-end
-
 
 return QUIPage

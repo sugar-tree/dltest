@@ -29,6 +29,7 @@ end
 
 function MyApp:run()
     self.fairyRoot = fairygui.GRoot:create(self._uiScene)
+    self.fairyRoot:retain()
     self._navigationManager = QNavigationManager.new(self.fairyRoot)
     self._mainLayerPage = self._navigationManager:createAndPushALayer("UI Main Navigation")
     self._topLayerPage = self._navigationManager:createAndPushALayer("Mid Layer Navigation")

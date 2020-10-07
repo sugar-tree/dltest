@@ -6,7 +6,7 @@ local QUIDialog = import(".QUIDialog")
 local QUIDialogInstance = class("QUIDialogInstance", QUIDialog)
 
 function QUIDialogInstance:ctor(options)
-    local fguiFile = "test"
+    local fguiFile = "dialog_main"
 	local resName = "main"
     local callbacks = {
     }

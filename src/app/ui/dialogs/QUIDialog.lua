@@ -8,8 +8,8 @@ local QNavigationController = import("...controllers.QNavigationController")
 QUIDialog.EFFECT_IN_SCALE = "showDialogScale" --缩放进场
 QUIDialog.EFFECT_OUT_SCALE = "hideDialogScale" --缩放出场
 
-function QUIDialog:ctor(ccbFile, callbacks, options)
-	QUIDialog.super.ctor(self, QUIViewController.TYPE_DIALOG, ccbFile, callbacks, options)
+function QUIDialog:ctor(fguiFile, resName, callbacks, options)
+	QUIDialog.super.ctor(self, QUIViewController.TYPE_DIALOG, fguiFile, resName, callbacks, options)
     self:setOptions(options)
 
     self.___handlers = {}
@@ -71,10 +71,6 @@ function QUIDialog:removeBackEvent()
 end
 
 function QUIDialog:getView()
-    return self._root
-end
-
-function QUIDialog:getChildView()
     return self._view
 end
 
@@ -140,10 +136,6 @@ function QUIDialog:viewWillDisappear()
 
     self:removeAnimationProxy()
 
-    for _,handler in ipairs(self.___handlers) do
-        self:getScheduler().unscheduleGlobal(handler)
-    end
-
     if self._enableDialogEvent == true then
         QNotificationCenter.sharedNotificationCenter():dispatchEvent({name = QNotificationCenter.EVENT_DIALOG_WILL_DISAPPEAR})
     end
@@ -192,24 +184,22 @@ function QUIDialog:onTriggerHomeHandler()
 end
 
 function QUIDialog:_enableTouchSwallow()
-    if(self:getView() == nil) then return end
-    local color = ccc4(0, 0, 0, 128)
+    if(self:getBackRoot() == nil) then return end
+    local color = cc.c4b(0, 0, 0, 128)
 
     if self._backTouchLayer == nil then
-        self._backTouchLayer = CCLayerColor:create(color, display.width, display.height)
-        self._backTouchLayer:setPosition(-display.width/2, -display.height/2)
+        self._backTouchLayer = cc.LayerColor:create(color, display.width, display.height)
+        self._backTouchLayer:setPosition(0, -display.height)
         self._backTouchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
         self._backTouchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, QUIDialog._onTouchEnable))
         self._backTouchLayer:setTouchEnabled(true)
 
-        self:getView():addChild(self._backTouchLayer,-1)
+        self:getBackRoot():addChild(self._backTouchLayer)
     end
 end
 
 function QUIDialog:_disableTouchSwallow()
     if self._backTouchLayer ~= nil then
-        self._backTouchLayer:removeNodeEventListenersByEvent(cc.NODE_TOUCH_EVENT)
-        self._backTouchLayer:setTouchEnabled(false)
         self._backTouchLayer:removeFromParent()
         self._backTouchLayer = nil
     end
@@ -225,7 +215,7 @@ end
 
 --add touch layer at top layer stop touch event
 function QUIDialog:enableTouchSwallowTop()
-    if(self:getView() == nil) then return end
+    if(self:getBackRoot() == nil) then return end
 
     if self._topTouchLayer == nil then
         self._enable = false
@@ -234,7 +224,7 @@ function QUIDialog:enableTouchSwallowTop()
         self._topTouchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
         self._topTouchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, QUIDialog._onTouchTopEnable))
         self._topTouchLayer:setTouchEnabled(true)
-        self:getView():addChild(self._topTouchLayer, 10000)
+        self:getRoot():addChild(self._topTouchLayer, 10000)
     end
 end
 
@@ -242,8 +232,6 @@ end
 function QUIDialog:disableTouchSwallowTop()
     if self._topTouchLayer ~= nil then
         self._enable = true
-        self._topTouchLayer:removeNodeEventListenersByEvent(cc.NODE_TOUCH_EVENT)
-        self._topTouchLayer:setTouchEnabled(false)
         self._topTouchLayer:removeFromParent()
         self._topTouchLayer = nil
     end
@@ -266,7 +254,7 @@ function QUIDialog:_onTouchEnable(event)
         if self.isAnimation == true and self._isEffectPlay == true then
             return
         end
-        local handler = self:getScheduler().performWithDelayGlobal(self:safeHandler(function()
+        local handler = self:getRoot():performWithDelay(self:safeHandler(function()
             self:_backClickHandler(event)
             end),0)
         table.insert(self.___handlers, handler)
@@ -288,7 +276,7 @@ function QUIDialog:_onTouchTopEnable(event)
         if self.isAnimation == true and self._isEffectPlay == true then
             return
         end
-        local handler = self:getScheduler().performWithDelayGlobal(self:safeHandler(function()
+        local handler = self:getRoot():performWithDelay(self:safeHandler(function()
             self:_topClickHandler(event)
             end),0)
         table.insert(self.___handlers, handler)

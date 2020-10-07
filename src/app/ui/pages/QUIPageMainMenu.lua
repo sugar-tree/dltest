@@ -19,13 +19,11 @@ function QUIPageMainMenu:ctor(options)
     self._touchLayer.parentName = "QUIPageMainMenu"
     self._touchLayer:setSlideRate(0.3)
     self._touchLayer:setAttachSlide(true)
-    self._touchLayer:attachToNode(self:getView(), display.width, display.height, 0, 0, handler(self, self._onTouch))
+    self._touchLayer:attachToNode(self:getBackRoot(), display.width, display.height, 0, -display.height, handler(self, self._onTouch))
     
     self._isMoveing = false
     self._totalWidth = self._fguiOwner.node_near:getWidth()
     self._minLeftX = self._fguiOwner.node_near:getX()
-
-    self:viewDidAppear()
 end
 
 function QUIPageMainMenu:viewDidAppear()
@@ -58,7 +56,7 @@ function QUIPageMainMenu:_onTouch(event)
             self._isMoveing = true
         end
     elseif event.name == "ended" or event.name == "cancelled" then
-        self:performWithDelay(function ()
+        self:getRoot():performWithDelay(function ()
             self._isMoveing = false
         end, 0)
     elseif event.name == QUIGestureRecognizer.EVENT_SLIDE_GESTURE then
@@ -136,13 +134,11 @@ function QUIPageMainMenu:_removeAction()
 end
 
 function QUIPageMainMenu:_onTriggerInstance(context)
-    print("-----_onTriggerInstance--",context, app.mainUILayer)
-    
     app:getNavigationManager():pushViewController(app.mainUILayer, {uiType = QUIViewController.TYPE_DIALOG, uiClass = "QUIDialogInstance"})
 end
 
 function QUIPageMainMenu:_onTriggerSunwell(context)
-    print("-----_onTriggerSunwell--",context)
+    app:getNavigationManager():pushViewController(app.middleLayer, {uiType = QUIViewController.TYPE_DIALOG, uiClass = "QUIDialogSunwell"})
 end
 
 return QUIPageMainMenu

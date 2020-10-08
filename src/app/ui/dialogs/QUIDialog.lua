@@ -185,13 +185,12 @@ end
 
 function QUIDialog:_enableTouchSwallow()
     if(self:getBackRoot() == nil) then return end
-    local color = cc.c4b(0, 0, 0, 128)
 
     if self._backTouchLayer == nil then
-        self._backTouchLayer = cc.LayerColor:create(color, display.width, display.height)
+        self._backTouchLayer = cc.LayerColor:create(cc.c4b(0, 0, 0, 128), display.width, display.height)
         self._backTouchLayer:setPosition(0, -display.height)
         self._backTouchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
-        self._backTouchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, QUIDialog._onTouchEnable))
+        self._backTouchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, self._onTouchEnable))
         self._backTouchLayer:setTouchEnabled(true)
 
         self:getBackRoot():addChild(self._backTouchLayer)
@@ -222,7 +221,7 @@ function QUIDialog:enableTouchSwallowTop()
         self._topTouchLayer = CCLayerColor:create(ccc4(0, 0, 0, 0), display.width, display.height)
         self._topTouchLayer:setPosition(-display.width/2, -display.height/2)
         self._topTouchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
-        self._topTouchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, QUIDialog._onTouchTopEnable))
+        self._topTouchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, self._onTouchTopEnable))
         self._topTouchLayer:setTouchEnabled(true)
         self:getRoot():addChild(self._topTouchLayer, 10000)
     end

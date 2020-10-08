@@ -31,7 +31,7 @@ static CommandSetup *s_instance = nullptr;
 CommandSetup::CommandSetup()
 : _logToFile(false)
 , _scale(100)
-, _width(960)
+, _width(1136)
 , _height(640)
 , _relauncher(nullptr)
 {

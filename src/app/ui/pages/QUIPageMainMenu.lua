@@ -16,7 +16,6 @@ function QUIPageMainMenu:ctor(options)
     QUIPageMainMenu.super.ctor(self, fguiFile, resName, callbacks, options)
 
     self._touchLayer = QUIGestureRecognizer.new()
-    self._touchLayer.parentName = "QUIPageMainMenu"
     self._touchLayer:setSlideRate(0.3)
     self._touchLayer:setAttachSlide(true)
     self._touchLayer:attachToNode(self:getBackRoot(), display.width, display.height, 0, -display.height, handler(self, self._onTouch))
@@ -37,7 +36,6 @@ function QUIPageMainMenu:viewWillDisappear()
     QUIPageMainMenu.super.viewWillDisappear(self)
 
     self._touchLayer:removeAllEventListeners()
-    self._touchLayer:disable()
     self._touchLayer:detach()
 end
 

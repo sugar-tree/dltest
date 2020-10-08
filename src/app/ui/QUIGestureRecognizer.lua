@@ -63,7 +63,6 @@ function QUIGestureRecognizer:attachToNode(node, width, height, offsetX, offsetY
 	-- touch event
 	self._touchLayer:setContentSize(cc.size(display.width, display.height))
     self._touchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
-    self._touchLayer:setTouchSwallowEnabled(false)
     self._touchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, QUIGestureRecognizer._onTouch))
 end
 
@@ -81,12 +80,12 @@ function QUIGestureRecognizer:detach()
 	self._touchLayer = nil
 end
 
-function QUIGestureRecognizer:enable()
+function QUIGestureRecognizer:enable(isSwallow)
 	if self._touchLayer == nil then
 		return
 	end
-
     self._touchLayer:setTouchEnabled( true )
+    self._touchLayer:setTouchSwallowEnabled( isSwallow or false )
 end
 
 function QUIGestureRecognizer:disable()

@@ -14,7 +14,7 @@ function QUIDialogSunwell:ctor(options)
     QUIDialogSunwell.super.ctor(self, fguiFile, resName, callbacks, options)
 end
 
-function QUIDialogSunwell:_onTriggerInstance(context)
+function QUIDialogSunwell:_onTriggerClose(context)
 	self:playEffectOut()
 end
 

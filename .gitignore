@@ -2,6 +2,8 @@
 ~$*.docx
 ~$*.xlsx
 
+*.DS_Store
+
 output/*
 debug.log
 

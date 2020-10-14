@@ -25,6 +25,10 @@ cmake_minimum_required(VERSION 3.6)
 
 set(APP_NAME dltest)
 
+set(CMAKE_C_COMPILER_WORKS 1)
+set(CMAKE_CXX_COMPILER_WORKS 1)
+set(CMAKE_TRY_COMPILE_TARGET_TYPE "STATIC_LIBRARY")
+
 project(${APP_NAME})
 
 if(XCODE)
@@ -84,6 +88,7 @@ elseif(APPLE)
         list(APPEND GAME_HEADER
              ${RUNTIME_SRC_ROOT}/proj.ios/AppController.h
              ${RUNTIME_SRC_ROOT}/proj.ios/RootViewController.h
+             ${RUNTIME_SRC_ROOT}/Classes/setup.h
              )
         set(APP_UI_RES
             ${RUNTIME_SRC_ROOT}/proj.ios/LaunchScreen.storyboard
@@ -95,21 +100,24 @@ elseif(APPLE)
              ${RUNTIME_SRC_ROOT}/proj.ios/AppController.mm
              ${RUNTIME_SRC_ROOT}/proj.ios/RootViewController.mm
              ${RUNTIME_SRC_ROOT}/proj.ios/Prefix.pch
+             ${RUNTIME_SRC_ROOT}/Classes/setup.cpp
              ${APP_UI_RES}
              )
     elseif(MACOSX)
         list(APPEND GAME_HEADER
-             ${RUNTIME_SRC_ROOT}/proj.ios_mac/mac/ConsoleWindowController.h
+             ${RUNTIME_SRC_ROOT}/proj.mac/ConsoleWindowController.h
+             ${RUNTIME_SRC_ROOT}/Classes/setup.h
              )
         set(APP_UI_RES
-            ${RUNTIME_SRC_ROOT}/proj.ios_mac/mac/Icon.icns
-            ${RUNTIME_SRC_ROOT}/proj.ios_mac/mac/Info.plist
-            ${RUNTIME_SRC_ROOT}/proj.ios_mac/mac/ConsoleWindow.xib
+            ${RUNTIME_SRC_ROOT}/proj.mac/Icon.icns
+            ${RUNTIME_SRC_ROOT}/proj.mac/Info.plist
+            ${RUNTIME_SRC_ROOT}/proj.mac/ConsoleWindow.xib
             )
         list(APPEND GAME_SOURCE
-             ${RUNTIME_SRC_ROOT}/proj.ios_mac/mac/main.mm
-             ${RUNTIME_SRC_ROOT}/proj.ios_mac/mac/Prefix.pch
-             ${RUNTIME_SRC_ROOT}/proj.ios_mac/mac/ConsoleWindowController.m
+             ${RUNTIME_SRC_ROOT}/proj.mac/main.mm
+             ${RUNTIME_SRC_ROOT}/proj.mac/Prefix.pch
+             ${RUNTIME_SRC_ROOT}/proj.mac/ConsoleWindowController.m
+             ${RUNTIME_SRC_ROOT}/Classes/setup.cpp
              ${APP_UI_RES}
              )
     endif()
@@ -136,10 +144,10 @@ target_include_directories(${APP_NAME} PRIVATE ${RUNTIME_SRC_ROOT}/Classes)
 setup_cocos_app_config(${APP_NAME})
 if(APPLE)
     set_target_properties(${APP_NAME} PROPERTIES RESOURCE "${APP_UI_RES}")
-	set_xcode_property(${APP_NAME} INSTALL_PATH "\${LOCAL_APPS_DIR}") # fix archive no file
+    set_xcode_property(${APP_NAME} INSTALL_PATH "\${LOCAL_APPS_DIR}") # fix archive no file
     if(MACOSX)
         set_target_properties(${APP_NAME} PROPERTIES
-                              MACOSX_BUNDLE_INFO_PLIST "${RUNTIME_SRC_ROOT}/proj.ios_mac/mac/Info.plist"
+                              MACOSX_BUNDLE_INFO_PLIST "${RUNTIME_SRC_ROOT}/proj.mac/Info.plist"
                               )
         set_target_properties(${APP_NAME} PROPERTIES
             LINK_FLAGS "-pagezero_size 10000 -image_base 100000000"

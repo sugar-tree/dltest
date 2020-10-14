@@ -191,7 +191,7 @@ function QUIDialog:_enableTouchSwallow()
         self._backTouchLayer:setPosition(0, -display.height)
         self._backTouchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
         self._backTouchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, self._onTouchEnable))
-        self._backTouchLayer:setTouchEnabled(true)
+        -- self._backTouchLayer:setTouchEnabled(true)
 
         self:getBackRoot():addChild(self._backTouchLayer)
     end

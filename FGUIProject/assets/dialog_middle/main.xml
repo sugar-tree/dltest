@@ -1,9 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="1136,640">
+<component size="1136,640" opaque="false" designImage="ui://ow5vk5a2ltf95">
+  <controller name="c1" alias="ccc" exported="true" pages="0,,1,,2," selected="0"/>
   <displayList>
-    <image id="n1_mc9p" name="n1" src="mc9p2" fileName="dialog_frame.png" xy="160,90" size="800,480" group="n3_w1lp"/>
-    <component id="n2_mc9p" name="btn_close" src="mc9p3" fileName="btn_close.xml" xy="912,69" group="n3_w1lp"/>
-    <group id="n3_w1lp" name="n3" xy="160,69" size="816,501" advanced="true">
+    <image id="n1_mc9p" name="n1" src="mc9p2" fileName="dialog_frame.png" xy="205,73" size="800,480" group="n3_w1lp">
+      <relation target="" sidePair="left-center,top-middle"/>
+    </image>
+    <component id="n2_mc9p" name="btn_close" src="mc9p3" fileName="btn_close.xml" xy="959,47" group="n3_w1lp">
+      <relation target="n1_mc9p" sidePair="left-right,top-top"/>
+      <relation target="" sidePair="left-left"/>
+    </component>
+    <movieclip id="n4_ltf9" name="n4" src="ltf94" fileName="MovieClip1.jta" xy="380,-23" group="n3_w1lp"/>
+    <text id="n5_ltf9" name="n5" xy="199,315" size="634,94" group="n3_w1lp" font="ui://ow5vk5a2ltf95" fontSize="20" ubb="true" autoSize="height" text="123450000">
+      <gearDisplay controller="c1" pages="0,1"/>
+      <gearXY controller="c1" pages="0" values="199,315" default="332,187" tween="true"/>
+      <relation target="" sidePair="center-center"/>
+    </text>
+    <richtext id="n6_ltf9" name="n6" xy="517,-4" size="44,29" group="n3_w1lp" tooltips="fgdgd" fontSize="20" ubb="true" text="[color=#ff00ff]牛逼"/>
+    <loader id="n7_tibv" name="n7" xy="833,227" size="71,34" group="n3_w1lp" url="ui://ow5vk5a2ltf94" fill="scale" autoSize="true" playing="false"/>
+    <text id="n9_tibv" name="n9" xy="320,21" size="40,29" group="n3_w1lp" fontSize="20" text="00&#xA;" input="true"/>
+    <group id="n3_w1lp" name="n3" xy="199,-23" size="824,576" advanced="true">
       <relation target="" sidePair="center-center,middle-middle"/>
     </group>
   </displayList>

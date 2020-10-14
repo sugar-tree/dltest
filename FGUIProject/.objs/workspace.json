@@ -1,18 +1,16 @@
 {
   "libview.firstColumnWidth": 283,
-  "gridSize": 50,
-  "libview.iconScale": 0,
+  "snapToGrid": false,
   "doc.openedDocs": [
     "ui://izh5i1imgcoi0",
     "ui://iec90rl1hu250",
     "ui://op2p5mu4mc9p0",
-    "ui://ow5vk5a2mc9p0",
-    "ui://ow5vk5a2mc9p3"
+    "ui://ow5vk5a2mc9p0"
   ],
   "test.device": "Xiaomi 9",
   "canvasColor": 10066329,
   "auxline2": true,
-  "doc.activeDoc": "ui://ow5vk5a2mc9p0",
+  "doc.activeDoc": "ui://izh5i1imgcoi0",
   "libview.twoColumn": false,
   "libview.expandedNodes": [
     "op2p5mu4",
@@ -21,16 +19,15 @@
     "/",
     "izh5i1im",
     "/",
-    "izh5i1im",
-    "/buttons/",
     "iec90rl1",
     "/"
   ],
   "showGrid": true,
-  "snapToGrid": false,
+  "gridSize": 50,
   "test.orientation": "landscape",
   "backgroundColor": 6710886,
   "libview.currentGroup": "",
+  "libview.iconScale": 0,
   "auxline1": true,
   "gridColor": 80
 }

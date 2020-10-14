@@ -94,39 +94,30 @@ function QUIPageMainMenu:screenMove(distance, isSlider)
 end
 
 function QUIPageMainMenu:_contentRunAction(node, posX, posY)
-    node:setPosition(posX, posY)
-    -- local moveTo = cc.MoveTo:create(1.3, cc.p(posX,posY))
-    -- local speed = cc.EaseExponentialOut:create(moveTo)
-    -- local callback = cc.CallFunc:create(function ()
-    --     self:_removeAction()
-    -- end)
-    -- local sequence = cc.Sequence:create(speed, callback)
-    -- return tolua.cast(node, "cc.Node"):runAction(sequence)
-
-    -- local moveTo = cc.MoveTo:create(1.3, cc.p(posX,posY))
-    -- local speed = cc.EaseExponentialOut:create(moveTo)
-    -- local callback = cc.CallFunc:create(function ()
-    --     self:_removeAction()
-    -- end)
-    -- local sequence = cc.Sequence:create(speed, callback)
-    -- return node:runAction(moveTo)
+    local moveTo = cc.MoveTo:create(1.3, cc.p(posX,posY))
+    local speed = cc.EaseExponentialOut:create(moveTo)
+    local callback = cc.CallFunc:create(function ()
+        self:_removeAction()
+    end)
+    local sequence = cc.Sequence:create(speed, callback)
+    return node:displayObject():runAction(moveTo)
 end
 
 function QUIPageMainMenu:_removeAction()
     if self._actionHandler1 ~= nil then
-        self._ccbOwner.node_sky:stopAction(self._actionHandler1)
+        self._fguiOwner.node_sky:displayObject():stopAction(self._actionHandler1)
         self._actionHandler1 = nil
     end
     if self._actionHandler2 ~= nil then
-        self._ccbOwner.node_sky:stopAction(self._actionHandler2)
+        self._fguiOwner.node_far:displayObject():stopAction(self._actionHandler2)
         self._actionHandler2 = nil
     end
     if self._actionHandler3 ~= nil then
-        self._ccbOwner.node_sky:stopAction(self._actionHandler3)
+        self._fguiOwner.node_mid:displayObject():stopAction(self._actionHandler3)
         self._actionHandler3 = nil
     end
     if self._actionHandler4 ~= nil then
-        self._ccbOwner.node_sky:stopAction(self._actionHandler4)
+        self._fguiOwner.node_near:displayObject():stopAction(self._actionHandler4)
         self._actionHandler4 = nil
     end
 end

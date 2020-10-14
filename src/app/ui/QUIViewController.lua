@@ -9,10 +9,6 @@ function QUIViewController:ctor(type, fguiFile, resName, callbacks, options)
     self._fguiOwner = {}
 
     self._view = fairygui.GComponent:create()
-
-    self._viewBackNode = fairygui.GObject:create()
-    self._view:addChild(self._viewBackNode)
-
     self._gComponent = nil
     if fguiFile and resName then
         fairygui.UIPackage:addPackage("fairygui/"..fguiFile)
@@ -34,9 +30,11 @@ function QUIViewController:ctor(type, fguiFile, resName, callbacks, options)
         self._view:addChild(self._gComponent)
     end
 
-
-    self._viewFrontNode = fairygui.GObject:create()
-    self._view:addChild(self._viewFrontNode)
+    self._viewBackNode = cc.Node:create()
+    self._view:displayObject():addChild(self._viewBackNode, -1)
+    
+    self._viewFrontNode = cc.Node:create()
+    self._view:displayObject():addChild(self._viewFrontNode, 1)
 
     self._parentViewController = nil
     self._subViewControllers = {}
@@ -51,11 +49,11 @@ function QUIViewController:getView()
 end
 
 function QUIViewController:getBackRoot()
-    return self._viewBackNode:displayObject()
+    return self._viewBackNode
 end
 
 function QUIViewController:getRoot()
-    return self._viewFrontNode:displayObject()
+    return self._viewFrontNode
 end
 
 function QUIViewController:setParentController(controller)
@@ -199,7 +197,7 @@ function QUIViewController:_setFGUICallbacks(callbacks)
         if childName ~= nil and callback ~= nil then
             local btn = self._gComponent:getChild(childName)
             if btn then
-                btn:addEventListener(fairygui.UIEventType.TouchEnd, function(context)
+                btn:addEventListener(fairygui.UIEventType.Click, function(context)
                     callback(context)
                 end)
             else

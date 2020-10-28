@@ -2,6 +2,7 @@
 <component size="1136,640" opaque="false" designImage="ui://ow5vk5a2ltf95">
   <controller name="c1" alias="ccc" exported="true" pages="0,,1,,2," selected="0"/>
   <displayList>
+    <graph id="n10_pskw" name="__touch" xy="202,70" size="804,487" type="rect" lineColor="#00000000" fillColor="#00ffffff"/>
     <image id="n1_mc9p" name="n1" src="mc9p2" fileName="dialog_frame.png" xy="205,73" size="800,480" group="n3_w1lp">
       <relation target="" sidePair="left-center,top-middle"/>
     </image>

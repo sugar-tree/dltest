@@ -965,59 +965,59 @@ GObject* GComponent::hitTest(const Vec2& worldPoint, const Camera* camera)
 
     switch (_childrenRenderOrder)
     {
-    case ChildrenRenderOrder::ASCENT:
-    {
-        for (int i = cnt - 1; i >= 0; i--)
+        case ChildrenRenderOrder::ASCENT:
         {
-            GObject* child = _children.at(i);
-            if (!child->_displayObject || child == _maskOwner)
-                continue;
+            for (int i = cnt - 1; i >= 0; i--)
+            {
+                GObject* child = _children.at(i);
+                if (!child->_displayObject || child == _maskOwner)
+                    continue;
 
-            target = child->hitTest(worldPoint, camera);
-            if (target)
-                return target;
+                target = child->hitTest(worldPoint, camera);
+                if (target)
+                    return target;
+            }
         }
-    }
-    break;
-    case ChildrenRenderOrder::DESCENT:
-    {
-        for (int i = 0; i < cnt; i++)
+        break;
+        case ChildrenRenderOrder::DESCENT:
         {
-            GObject* child = _children.at(i);
-            if (!child->_displayObject || child == _maskOwner)
-                continue;
+            for (int i = 0; i < cnt; i++)
+            {
+                GObject* child = _children.at(i);
+                if (!child->_displayObject || child == _maskOwner)
+                    continue;
 
-            target = child->hitTest(worldPoint, camera);
-            if (target)
-                return target;
+                target = child->hitTest(worldPoint, camera);
+                if (target)
+                    return target;
+            }
         }
-    }
-    break;
+        break;
 
-    case ChildrenRenderOrder::ARCH:
-    {
-        int ai = MIN(_apexIndex, cnt);
-        for (int i = ai; i < cnt; i++)
+        case ChildrenRenderOrder::ARCH:
         {
-            GObject* child = _children.at(i);
-            if (!child->_displayObject || child == _maskOwner)
-                continue;
+            int ai = MIN(_apexIndex, cnt);
+            for (int i = ai; i < cnt; i++)
+            {
+                GObject* child = _children.at(i);
+                if (!child->_displayObject || child == _maskOwner)
+                    continue;
 
-            target = child->hitTest(worldPoint, camera);
-            if (target)
-                return target;
-        }
-        for (int i = ai - 1; i >= 0; i--)
-        {
-            GObject* child = _children.at(i);
-            if (!child->_displayObject || child == _maskOwner)
-                continue;
+                target = child->hitTest(worldPoint, camera);
+                if (target)
+                    return target;
+            }
+            for (int i = ai - 1; i >= 0; i--)
+            {
+                GObject* child = _children.at(i);
+                if (!child->_displayObject || child == _maskOwner)
+                    continue;
 
-            target = child->hitTest(worldPoint, camera);
-            if (target)
-                return target;
+                target = child->hitTest(worldPoint, camera);
+                if (target)
+                    return target;
+            }
         }
-    }
     }
 
     if (_opaque)

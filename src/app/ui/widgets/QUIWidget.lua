@@ -59,7 +59,7 @@ function QUIWidget:getOptions()
 end
 
 function QUIWidget:setOptions(options)
-    self._options = options
+    self._options = options or {}
 end
 
 function QUIWidget:_setFGUICallbacks(callbacks)

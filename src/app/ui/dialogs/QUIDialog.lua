@@ -9,41 +9,27 @@ QUIDialog.EFFECT_IN_SCALE = "showDialogScale" --缩放进场
 QUIDialog.EFFECT_OUT_SCALE = "hideDialogScale" --缩放出场
 
 function QUIDialog:ctor(fguiFile, resName, callbacks, options)
-	QUIDialog.super.ctor(self, QUIViewController.TYPE_DIALOG, fguiFile, resName, callbacks, options)
+	QUIDialog.super.ctor(self, QUIViewController.TYPE_DIALOG, fguiFile, resName, callbacks)
+
     self:setOptions(options)
 
-    self.___handlers = {}
     self.isAnimation = false --是否动画显示
-    self.effectInName = QUIDialog.EFFECT_IN_SCALE --采用的动画名称
-    self.effectOutName = QUIDialog.EFFECT_OUT_SCALE --采用的动画名称
-    if options ~= nil then
-        self.isQuickWay = options.isQuickWay
-        if options.effectInName ~= nil then
-            self.effectInName = options.effectInName
-        end
-        if options.effectOutName ~= nil then
-            self.effectOutName = options.effectOutName
-        end
-    end
-    self._isLock = false --是否唯一窗口
+    self.effectInName = options.effectInName or QUIDialog.EFFECT_IN_SCALE
+    self.effectOutName = options.effectOutName or QUIDialog.EFFECT_OUT_SCALE 
+
+    self._isChild = options.isChild or false
     self._isTouchSwallow = true
     self._enableDialogEvent = true
-    if options ~= nil and options.isChild ~= nil then
-        self._isChild = options.isChild
-    else
-        self._isChild =  false
-    end
-
+    self._isLock = false --是否唯一窗口
     self._enable = true
 end
 
 function QUIDialog:getOptions()
-    if self._options == nil then self._options = {} end
     return self._options
 end
 
 function QUIDialog:setOptions(options)
-    self._options = options
+    self._options = options or {}
 end
 
 function QUIDialog:getEnable()
@@ -59,9 +45,6 @@ function QUIDialog:addBackEvent(isShowHome)
         page:setBackBtnVisible(true)
         page:setHomeBtnVisible(self._isShowHome)
         QNotificationCenter.sharedNotificationCenter():addMainPageEvent(self)
-        if self.isQuickWay == true then
-            page:setScalingVisible(false)
-        end
     end
 end
 
@@ -183,27 +166,6 @@ function QUIDialog:onTriggerHomeHandler()
     end
 end
 
-function QUIDialog:_enableTouchSwallow()
-    if(self:getBackRoot() == nil) then return end
-
-    if self._backTouchLayer == nil then
-        self._backTouchLayer = cc.LayerColor:create(cc.c4b(0, 0, 0, 128), display.width, display.height)
-        self._backTouchLayer:setPosition(0, -display.height)
-        self._backTouchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
-        self._backTouchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, self._onTouchEnable))
-        -- self._backTouchLayer:setTouchEnabled(true)
-
-        self:getBackRoot():addChild(self._backTouchLayer)
-    end
-end
-
-function QUIDialog:_disableTouchSwallow()
-    if self._backTouchLayer ~= nil then
-        self._backTouchLayer:removeFromParent()
-        self._backTouchLayer = nil
-    end
-end
-
 --set back button enable
 function QUIDialog:setBackBtnEnable(b )
     local page = app:getNavigationManager():getController(app.mainUILayer):getTopPage()
@@ -212,14 +174,33 @@ function QUIDialog:setBackBtnEnable(b )
     end
 end
 
+function QUIDialog:popSelf()
+    app:getNavigationManager():popViewController(self:getOptions().layerIndex, QNavigationController.POP_TOP_CONTROLLER)
+end
+
+function QUIDialog:_enableTouchSwallow()
+    if self:getComponent() == nil then return end
+
+    self._gComponent:setOpaque(true)
+    self._gComponent:addEventListener(fairygui.UIEventType.TouchBegin, handler(self, self._onTouchEnable))
+    self._gComponent:addEventListener(fairygui.UIEventType.TouchEnd, handler(self, self._onTouchEnable))
+end
+
+function QUIDialog:_disableTouchSwallow()
+    if self:getComponent() == nil then return end
+
+    self._gComponent:setOpaque(false)
+    self._gComponent:removeEventListeners()
+end
+
 --add touch layer at top layer stop touch event
 function QUIDialog:enableTouchSwallowTop()
-    if(self:getBackRoot() == nil) then return end
+    if self:getComponent() == nil then return end
 
     if self._topTouchLayer == nil then
         self._enable = false
-        self._topTouchLayer = CCLayerColor:create(ccc4(0, 0, 0, 0), display.width, display.height)
-        self._topTouchLayer:setPosition(-display.width/2, -display.height/2)
+        self._topTouchLayer = cc.LayerColor:create(cc.c4b(255, 0, 0, 0), display.width, display.height)
+        self._topTouchLayer:setPosition(0, -display.height)
         self._topTouchLayer:setTouchMode(cc.TOUCH_MODE_ONE_BY_ONE)
         self._topTouchLayer:addNodeEventListener(cc.NODE_TOUCH_EVENT, handler(self, self._onTouchTopEnable))
         self._topTouchLayer:setTouchEnabled(true)
@@ -240,25 +221,21 @@ function QUIDialog:_backClickHandler()
     
 end
 
-function QUIDialog:popSelf()
-    app:getNavigationManager():popViewController(self:getOptions().layerIndex, QNavigationController.POP_TOP_CONTROLLER)
-end
-
 function QUIDialog:_onTouchEnable(event)
-    if event.name == "began" then
-        return true
-    elseif event.name == "moved" then
-        
-    elseif event.name == "ended" then
-        if self.isAnimation == true and self._isEffectPlay == true then
-            return
-        end
-        local handler = self:getRoot():performWithDelay(self:safeHandler(function()
+    if self.isAnimation == true and self._isEffectPlay == true then
+        return
+    end
+    local input = event:getInput()
+    local touchPos = input:getTouch():getLocation()
+    local touchNode = self._fguiOwner.__touch
+    if touchNode and touchNode:displayObject():hitTest(touchPos) then 
+        return
+    end
+    local eventType = event:getType()
+    if eventType == fairygui.UIEventType.TouchEnd then
+        self:getRoot():performWithDelay(function()
             self:_backClickHandler(event)
-            end),0)
-        table.insert(self.___handlers, handler)
-    elseif event.name == "cancelled" then
-        
+        end, 0)
     end
 end
 
@@ -267,20 +244,15 @@ function QUIDialog:_topClickHandler()
 end
 
 function QUIDialog:_onTouchTopEnable(event)
+    if self.isAnimation == true and self._isEffectPlay == true then
+        return
+    end
     if event.name == "began" then
         return true
-    elseif event.name == "moved" then
-        
     elseif event.name == "ended" then
-        if self.isAnimation == true and self._isEffectPlay == true then
-            return
-        end
-        local handler = self:getRoot():performWithDelay(self:safeHandler(function()
+        self:getRoot():performWithDelay(function()
             self:_topClickHandler(event)
-            end),0)
-        table.insert(self.___handlers, handler)
-    elseif event.name == "cancelled" then
-        
+        end, 0)
     end
 end
 

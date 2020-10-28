@@ -15,11 +15,6 @@ function QUIPageMainMenu:ctor(options)
     }
     QUIPageMainMenu.super.ctor(self, fguiFile, resName, callbacks, options)
 
-    self._touchLayer = QUIGestureRecognizer.new()
-    self._touchLayer:setSlideRate(0.3)
-    self._touchLayer:setAttachSlide(true)
-    self._touchLayer:attachToNode(self:getBackRoot(), display.width, display.height, 0, -display.height, handler(self, self._onTouch))
-    
     self._isMoveing = false
     self._totalWidth = self._fguiOwner.node_near:getWidth()
     self._minLeftX = self._fguiOwner.node_near:getX()
@@ -28,41 +23,43 @@ end
 function QUIPageMainMenu:viewDidAppear()
     QUIPageMainMenu.super.viewDidAppear(self)
 
-    self._touchLayer:enable()
-    self._touchLayer:addEventListener(QUIGestureRecognizer.EVENT_SLIDE_GESTURE, handler(self, self._onTouch))
+    self._gComponent:addEventListener(fairygui.UIEventType.TouchBegin, handler(self, self._onTouchEvent))
+    self._gComponent:addEventListener(fairygui.UIEventType.TouchMove, handler(self, self._onTouchEvent))
+    self._gComponent:addEventListener(fairygui.UIEventType.TouchEnd, handler(self, self._onTouchEvent))
 end
 
 function QUIPageMainMenu:viewWillDisappear()
     QUIPageMainMenu.super.viewWillDisappear(self)
-
-    self._touchLayer:removeAllEventListeners()
-    self._touchLayer:detach()
 end
 
-function QUIPageMainMenu:_onTouch(event)
-    if event.name == "began" then
-        self._lastPositionX = event.x
+function QUIPageMainMenu:_onTouchEvent(event)
+    local eventType = event:getType()
+    local input = event:getInput()
+    if not input then
+        return
+    end
+    local posX = input:getX()
+    local posY = input:getY()
+    if eventType == fairygui.UIEventType.TouchBegin then
+        event:captureTouch()
+        self._lastPositionX = posX
         self._skyPositionX = self._fguiOwner.node_sky:getX()
         self._farPositionX = self._fguiOwner.node_far:getX()
         self._midPositionX = self._fguiOwner.node_mid:getX()
         self._nearPositionX = self._fguiOwner.node_near:getX()
         self:_removeAction()
         return true
-    elseif event.name == "moved" then
-        self:screenMove(event.x - self._lastPositionX, false)
-        if not self._isMoveing and math.abs(event.x - self._lastPositionX) > 10 then
+    elseif eventType == fairygui.UIEventType.TouchMove then
+        self:screenMove(posX - self._lastPositionX, false)
+        if not self._isMoveing and math.abs(posX - self._lastPositionX) > 10 then
             self._isMoveing = true
         end
-    elseif event.name == "ended" or event.name == "cancelled" then
+    elseif eventType == fairygui.UIEventType.TouchEnd then
+        event:uncaptureTouch()
+        self:screenMove(posX - self._lastPositionX, false)
         self:getRoot():performWithDelay(function ()
             self._isMoveing = false
         end, 0)
-    elseif event.name == QUIGestureRecognizer.EVENT_SLIDE_GESTURE then
-        self._skyPositionX = self._fguiOwner.node_sky:getX()
-        self._farPositionX = self._fguiOwner.node_far:getX()
-        self._midPositionX = self._fguiOwner.node_mid:getX()
-        self._nearPositionX = self._fguiOwner.node_near:getX()
-        self:screenMove(event.distance.x, true)
     end
 end
 
@@ -94,7 +91,7 @@ function QUIPageMainMenu:screenMove(distance, isSlider)
 end
 
 function QUIPageMainMenu:_contentRunAction(node, posX, posY)
-    local moveTo = cc.MoveTo:create(1.3, cc.p(posX,posY))
+    local moveTo = cc.MoveTo:create(1.3, cc.p(posX, posY))
     local speed = cc.EaseExponentialOut:create(moveTo)
     local callback = cc.CallFunc:create(function ()
         self:_removeAction()

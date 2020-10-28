@@ -4,11 +4,15 @@ local QUIViewController = class("QUIViewController")
 QUIViewController.TYPE_PAGE = "UI_TYPE_PAGE"
 QUIViewController.TYPE_DIALOG = "UI_TYPE_DIALOG"
 
-function QUIViewController:ctor(type, fguiFile, resName, callbacks, options)
-    self.__type = type
+function QUIViewController:ctor(sType, fguiFile, resName, callbacks, options)
+    self.__type = sType
     self._fguiOwner = {}
+    self._appear = false
 
+    -- 总view
     self._view = fairygui.GComponent:create()
+
+    -- guiView
     self._gComponent = nil
     if fguiFile and resName then
         fairygui.UIPackage:addPackage("fairygui/"..fguiFile)
@@ -30,9 +34,11 @@ function QUIViewController:ctor(type, fguiFile, resName, callbacks, options)
         self._view:addChild(self._gComponent)
     end
 
+    -- 后节点
     self._viewBackNode = cc.Node:create()
     self._view:displayObject():addChild(self._viewBackNode, -1)
     
+    -- 前节点
     self._viewFrontNode = cc.Node:create()
     self._view:displayObject():addChild(self._viewFrontNode, 1)
 
@@ -46,6 +52,10 @@ end
 
 function QUIViewController:getView()
     return self._view
+end
+
+function QUIViewController:getComponent()
+    return self._gComponent
 end
 
 function QUIViewController:getBackRoot()
@@ -66,18 +76,6 @@ end
 
 function QUIViewController:getParentController()
     return self._parentViewController
-end
-
-function QUIViewController:getNodeFromName(name)
-    local node = self._ccbOwner[name]
-    
-    if node ~= nil then
-        if type(node) == "function" then
-            node = nil
-        end
-    end
-
-    return node
 end
 
 function QUIViewController:addSubViewController(controller)
@@ -150,18 +148,8 @@ function QUIViewController:viewDidDisappear()
         printInfo("Exit instance:" .. self.__cname)
         printInfo("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
     end
+    
     self._appear = false
-    if self.__scheduler then
-        self.__scheduler.unscheduleAll()
-    end
-end
-
-function QUIViewController:viewDidReback()
-    if DEBUG > 0 then
-        printInfo(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-        printInfo("reback instance:" .. self.__cname)
-        printInfo("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<")
-    end
 end
 
 function QUIViewController:_addViewSubView(view)

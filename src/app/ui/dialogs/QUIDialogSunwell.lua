@@ -12,9 +12,14 @@ function QUIDialogSunwell:ctor(options)
         {childName = "btn_close", callback = handler(self, self._onTriggerClose)},
     }
     QUIDialogSunwell.super.ctor(self, fguiFile, resName, callbacks, options)
+
 end
 
 function QUIDialogSunwell:_onTriggerClose(context)
+	self:playEffectOut()
+end
+
+function QUIDialogSunwell:_backClickHandler()
 	self:playEffectOut()
 end
 

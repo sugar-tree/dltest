@@ -48,6 +48,13 @@
     <image id="hu251g" name="intro_tianshishengjian.png" path="/images/page_home/"/>
     <component id="xcc01l" name="btn_instance.xml" path="/buttons/"/>
     <component id="xcc01m" name="btn_sunwell.xml" path="/buttons/"/>
+    <image id="mrrz1n" name="btn_menu_back.png" path="/images/buttons/"/>
+    <image id="mrrz1o" name="btn_menu_home.png" path="/images/buttons/"/>
+    <image id="mrrz1p" name="btn_menu_xiala.png" path="/images/buttons/"/>
+    <component id="mrrz1q" name="home.xml" path="/" exported="true"/>
+    <component id="mrrz1r" name="btn_home.xml" path="/buttons/"/>
+    <component id="mrrz1s" name="btn_back.xml" path="/buttons/"/>
+    <component id="mrrz1t" name="btn_drop.xml" path="/buttons/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

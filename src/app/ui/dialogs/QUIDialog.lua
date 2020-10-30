@@ -227,6 +227,7 @@ function QUIDialog:_onTouchEnable(event)
     end
     local input = event:getInput()
     local touchPos = input:getTouch():getLocation()
+    -- 屏蔽点击关闭需要在gui里加这个节点
     local touchNode = self._fguiOwner.__touch
     if touchNode and touchNode:displayObject():hitTest(touchPos) then 
         return

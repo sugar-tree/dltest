@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,640">
+  <displayList>
+    <component id="n6_mrrz" name="btn_home" src="mrrz1r" fileName="buttons/btn_home.xml" xy="130,5"/>
+    <component id="n8_mrrz" name="btn_back" src="mrrz1s" fileName="buttons/btn_back.xml" xy="0,5"/>
+    <component id="n7_mrrz" name="btn_drop" src="mrrz1t" fileName="buttons/btn_drop.xml" xy="1020,5"/>
+  </displayList>
+</component>

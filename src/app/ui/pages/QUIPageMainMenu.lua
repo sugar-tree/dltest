@@ -2,7 +2,7 @@ local QUIPage = import(".QUIPage")
 local QUIPageMainMenu = class("QUIPageMainMenu", QUIPage)
 
 local QUIGestureRecognizer = import("..QUIGestureRecognizer")
-local QNotificationCenter = import("...controllers.QNotificationCenter")
+local QUIWidgetHomeBack = import("..widgets.QUIWidgetHomeBack")
 local QUIViewController = import("..QUIViewController")
 
 
@@ -18,6 +18,9 @@ function QUIPageMainMenu:ctor(options)
     self._isMoveing = false
     self._totalWidth = self._fguiOwner.node_near:getWidth()
     self._minLeftX = self._fguiOwner.node_near:getX()
+
+    local homeBack = QUIWidgetHomeBack.new()
+    self:getView():addChild(self._gComponent)
 end
 
 function QUIPageMainMenu:viewDidAppear()

@@ -4,24 +4,23 @@
   "libview.iconScale": 0,
   "doc.openedDocs": [
     "ui://izh5i1imgcoi0",
-    "ui://iec90rl1hu250",
-    "ui://op2p5mu4mc9p0",
-    "ui://ow5vk5a2mc9p0"
+    "ui://izh5i1immrrz1q",
+    "ui://izh5i1immrrz1t"
   ],
   "test.device": "Xiaomi 9",
   "canvasColor": 10066329,
   "auxline2": true,
-  "doc.activeDoc": "ui://izh5i1imgcoi0",
+  "doc.activeDoc": "ui://izh5i1immrrz1t",
   "libview.twoColumn": false,
   "libview.expandedNodes": [
     "op2p5mu4",
     "/",
-    "ow5vk5a2",
-    "/",
     "izh5i1im",
     "/",
-    "iec90rl1",
-    "/"
+    "izh5i1im",
+    "/buttons/",
+    "izh5i1im",
+    "/images/"
   ],
   "showGrid": true,
   "snapToGrid": false,

@@ -66,6 +66,11 @@ function QUIViewController:getRoot()
     return self._viewFrontNode
 end
 
+function QUIViewController:addFairyChild(controller)
+    self:getRoot():addChild(controller)
+    self:_addViewSubView(controller:getView())
+end
+
 function QUIViewController:setParentController(controller)
     if controller == nil then
         return

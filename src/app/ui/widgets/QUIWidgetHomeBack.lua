@@ -11,9 +11,16 @@ function QUIWidgetHomeBack:ctor(options)
     }
     QUIWidgetHomeBack.super.ctor(self, fguiFile, resName, callbacks, options)
 
-    cc.GameObject.extend(self)
-    self:addComponent("framework.components.EventProtocol"):exportMethods()
+    self:extendEvent()
 
+end
+
+function QUIWidgetHomeBack:setBackBtnVisible(b)
+    self._fguiOwner.btn_back:displayObject():setVisible(b)
+end
+
+function QUIWidgetHomeBack:setHomeBtnVisible(b)
+    self._fguiOwner.btn_home:displayObject():setVisible(b)
 end
 
 function QUIWidgetHomeBack:_onTriggerHome(context)

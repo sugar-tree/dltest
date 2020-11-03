@@ -53,10 +53,6 @@ function QUIDialog:removeBackEvent()
     QNotificationCenter.sharedNotificationCenter():removeMainPageEvent(self)
 end
 
-function QUIDialog:getView()
-    return self._view
-end
-
 function QUIDialog:playEffectIn()
     if self._isEffectPlay == true then
         return 

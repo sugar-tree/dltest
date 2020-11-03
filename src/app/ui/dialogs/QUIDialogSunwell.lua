@@ -15,6 +15,16 @@ function QUIDialogSunwell:ctor(options)
 
 end
 
+function QUIDialogSunwell:viewDidAppear()
+    QUIDialogSunwell.super.viewDidAppear(self)
+    self:addBackEvent(true)
+
+end
+
+function QUIDialogSunwell:viewWillDisappear()
+    QUIDialogSunwell.super.viewWillDisappear(self)
+end
+
 function QUIDialogSunwell:_onTriggerClose(context)
 	self:playEffectOut()
 end

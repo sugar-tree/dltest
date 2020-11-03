@@ -1,7 +1,6 @@
 local QUIPage = import(".QUIPage")
 local QUIPageMainMenu = class("QUIPageMainMenu", QUIPage)
 
-local QUIGestureRecognizer = import("..QUIGestureRecognizer")
 local QUIWidgetHomeBack = import("..widgets.QUIWidgetHomeBack")
 local QUIViewController = import("..QUIViewController")
 
@@ -19,8 +18,14 @@ function QUIPageMainMenu:ctor(options)
     self._totalWidth = self._fguiOwner.node_near:getWidth()
     self._minLeftX = self._fguiOwner.node_near:getX()
 
-    local homeBack = QUIWidgetHomeBack.new()
-    self:getView():addChild(self._gComponent)
+    self._homeBack = QUIWidgetHomeBack.new()
+    self._homeBack:setPosition(0, -display.height)
+    self:addFairyChild(self._homeBack, 100)
+
+    -- self._homeDrop = QUIWidgetHomeDrop.new()
+    -- self._homeDrop:setPosition(0, -display.height)
+    -- self:addFairyChild(self._homeDrop)
+    -- self._fguiOwner.n108:displayObject():setLocalZOrder(1000)
 end
 
 function QUIPageMainMenu:viewDidAppear()
@@ -29,6 +34,9 @@ function QUIPageMainMenu:viewDidAppear()
     self._gComponent:addEventListener(fairygui.UIEventType.TouchBegin, handler(self, self._onTouchEvent))
     self._gComponent:addEventListener(fairygui.UIEventType.TouchMove, handler(self, self._onTouchEvent))
     self._gComponent:addEventListener(fairygui.UIEventType.TouchEnd, handler(self, self._onTouchEvent))
+
+    self:setBackBtnVisible(false)
+    self:setHomeBtnVisible(false)
 end
 
 function QUIPageMainMenu:viewWillDisappear()
@@ -122,11 +130,54 @@ function QUIPageMainMenu:_removeAction()
     end
 end
 
+function QUIPageMainMenu:setBackBtnVisible(b)
+    self._homeBack:setBackBtnVisible(b)
+end
+
+function QUIPageMainMenu:setHomeBtnVisible(b)
+    self._homeBack:setHomeBtnVisible(b)
+end
+
+function QUIPageMainMenu:setScalingVisible(b)
+    if self._scaling ~= nil then
+        self._scaling:setVisible(b)
+    end
+end
+
+function QUIPageMainMenu:getScalingVisible()
+    if self._scaling ~= nil then
+        return self._scaling:isVisible()
+    end
+end
+
+function QUIPageMainMenu:setAllUIVisible(b)
+    if self._scaling ~= nil then
+        self._scaling:setVisible(true)
+    end
+    -- if b then 
+    --     self.topBar:showWithMainPage()
+    -- else
+    --     self.topBar:hideAll()
+    -- end
+end
+
+--回退到主界面
+function QUIPageMainMenu:onBackPage()
+    self:setAllUIVisible(true)
+    self:setScalingVisible(true)
+    self:setBackBtnVisible(false)
+    self:setHomeBtnVisible(false)
+end
+
 function QUIPageMainMenu:_onTriggerInstance(context)
     app:getNavigationManager():pushViewController(app.mainUILayer, {uiType = QUIViewController.TYPE_DIALOG, uiClass = "QUIDialogInstance"})
 end
 
 function QUIPageMainMenu:_onTriggerSunwell(context)
+    app:getNavigationManager():pushViewController(app.mainUILayer, {uiType = QUIViewController.TYPE_DIALOG, uiClass = "QUIDialogSunwell"})
+end
+
+function QUIPageMainMenu:_onTriggerHero(context)
     app:getNavigationManager():pushViewController(app.middleLayer, {uiType = QUIViewController.TYPE_DIALOG, uiClass = "QUIDialogSunwell"})
 end
 

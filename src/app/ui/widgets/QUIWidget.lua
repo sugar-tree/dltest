@@ -10,13 +10,12 @@ function QUIWidget:ctor(fguiFile, resName, callbacks, options)
     if fguiFile and resName then
         fairygui.UIPackage:addPackage("fairygui/"..fguiFile);
         self._view = fairygui.UIPackage:createObject(fguiFile, resName)
-        self._view:setOpaque(false) -- ignore touch
+        self._view:setOpaque(false)
         if self._view == nil then
             assert(false, "load fguiFile:" .. fguiFile .. " faild!")
         end
-        app:getRairyRoot():addChild(self._view)
     else
-        self._view = cc.Node:create()
+        self._view = fairygui.GComponent:create()
     end
 
     -- 回调函数
@@ -35,15 +34,11 @@ end
 
 function QUIWidget:extendEvent()
     cc.GameObject.extend(self)
-    self:addComponent("components.behavior.EventProtocol"):exportMethods()
+    self:addComponent("framework.components.EventProtocol"):exportMethods()
 end
 
 function QUIWidget:getView()
-    return self
-end
-
-function QUIWidget:getCCBView()
-    return self._fguiOwner
+    return self._view
 end
 
 function QUIWidget:onEnter()

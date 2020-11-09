@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="1136,640" scroll="horizontal">
+<component size="1136,640" pivot="0.5,0.5" scroll="horizontal">
   <displayList>
     <image id="n86_6wwd" name="n86" src="gcoi6" fileName="images/intro_bj/intro_bj5_3.jpg" xy="1027,-100" group="n102_6wwd" scale="1.25,1.25"/>
     <image id="n87_6wwd" name="n87" src="gcoi4" fileName="images/intro_bj/intro_bj5_1.jpg" xy="-1117,-100" group="n102_6wwd" scale="1.25,1.25"/>

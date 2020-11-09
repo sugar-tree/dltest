@@ -63,9 +63,13 @@ function QUIWidget:_setFGUICallbacks(callbacks)
         local callback = v.callback
         if childName ~= nil and callback ~= nil then
             local btn = self._view:getChild(childName)
-            btn:addEventListener(fairygui.UIEventType.TouchEnd, function(context)
-                callback(context)
-            end)
+            if btn then
+                btn:addEventListener(fairygui.UIEventType.Click, function(context)
+                    callback(context)
+                end)
+            else
+                print("no btn named "..childName)
+            end
         end
     end
 end

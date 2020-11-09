@@ -11,7 +11,13 @@ function QUIViewController:ctor(sType, fguiFile, resName, callbacks, options)
 
     -- 总view
     self._view = fairygui.GComponent:create()
-
+    -- guiView
+    self._curView = fairygui.GComponent:create()
+    self._view:addChild(self._curView)
+    
+    self._topView = fairygui.GComponent:create()
+    self._view:addChild(self._topView)
+    
     -- guiView
     self._gComponent = nil
     if fguiFile and resName then
@@ -31,16 +37,12 @@ function QUIViewController:ctor(sType, fguiFile, resName, callbacks, options)
         for i, child in pairs(childList) do
             self._fguiOwner[child.name] = child
         end
-        self._view:addChild(self._gComponent)
+        self._curView:addChild(self._gComponent)
     end
 
-    -- 后节点
-    self._viewBackNode = cc.Node:create()
-    self._view:displayObject():addChild(self._viewBackNode, -1)
-    
     -- 前节点
-    self._viewFrontNode = cc.Node:create()
-    self._view:displayObject():addChild(self._viewFrontNode, 1)
+    self._viewNode = cc.Node:create()
+    self._curView:displayObject():addChild(self._viewNode, 1)
 
     self._parentViewController = nil
     self._subViewControllers = {}
@@ -54,21 +56,26 @@ function QUIViewController:getView()
     return self._view
 end
 
+function QUIViewController:getTopView()
+    return self._topView
+end
+
 function QUIViewController:getComponent()
     return self._gComponent
 end
 
-function QUIViewController:getBackRoot()
-    return self._viewBackNode
-end
-
 function QUIViewController:getRoot()
-    return self._viewFrontNode
+    return self._viewNode
 end
 
 function QUIViewController:addFairyChild(controller)
     self:getRoot():addChild(controller)
     self:_addViewSubView(controller:getView())
+end
+
+function QUIViewController:addTopFairyChild(controller)
+    self:getRoot():addChild(controller)
+    self._topView:addChild(controller:getView())
 end
 
 function QUIViewController:setParentController(controller)
@@ -162,12 +169,12 @@ function QUIViewController:_addViewSubView(view)
         return
     end
 
-    if self._view == nil then
+    if self._curView == nil then
         assert(false, "self view is invalid!")
         return
     end
 
-    self._view:addChild(view)
+    self._curView:addChild(view)
 end
 
 function QUIViewController:_removeViewSubView(view)
@@ -175,12 +182,12 @@ function QUIViewController:_removeViewSubView(view)
         return
     end
 
-    if self._view == nil then
+    if self._curView == nil then
         assert(false, "self view is invalid!")
         return
     end
 
-    self._view:removeChild(view)
+    self._curView:removeChild(view)
 end
 
 function QUIViewController:_setFGUICallbacks(callbacks)

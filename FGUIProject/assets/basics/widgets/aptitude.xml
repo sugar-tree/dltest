@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="212,124">
+  <displayList>
+    <image id="n4_o4hd" name="n4" src="o4hd19" fileName="images/aptitude_c.png" xy="44,-5" group="n7_o4hd"/>
+    <group id="n7_o4hd" name="node_aptitude_c" xy="44,-5" size="124,134" advanced="true"/>
+    <image id="n3_o4hd" name="n3" src="o4hd17" fileName="images/aptitude_b.png" xy="47,-3" group="n8_o4hd"/>
+    <group id="n8_o4hd" name="node_aptitude_b" xy="47,-3" size="117,131" advanced="true"/>
+    <image id="n5_o4hd" name="n5" src="o4hd1i" fileName="images/aptitude_a.png" xy="43,-3" group="n9_o4hd"/>
+    <group id="n9_o4hd" name="node_aptitude_a" xy="43,-3" size="125,131" advanced="true"/>
+    <image id="n6_o4hd" name="n6" src="o4hd1k" fileName="images/aptitude_ax.png" xy="9,-3" group="n10_o4hd"/>
+    <group id="n10_o4hd" name="node_aptitude_ap" xy="9,-3" size="193,131" advanced="true"/>
+    <image id="n2_o4hd" name="n2" src="o4hd1b" fileName="images/aptitude_s.png" xy="45,-5" group="n11_o4hd"/>
+    <group id="n11_o4hd" name="node_aptitude_s" xy="45,-5" size="122,134" advanced="true"/>
+    <image id="n1_o4hd" name="n1" src="o4hd1d" fileName="images/aptitude_ss.png" xy="0,0" group="n12_o4hd"/>
+    <group id="n12_o4hd" name="node_aptitude_ss" xy="0,0" size="212,124" advanced="true"/>
+    <image id="n0_o4hd" name="n0" src="o4hd1f" fileName="images/aptitude_ssx.png" xy="0,0" group="n13_o4hd"/>
+    <group id="n13_o4hd" name="node_aptitude_ssp" xy="0,0" size="212,124" advanced="true"/>
+  </displayList>
+</component>

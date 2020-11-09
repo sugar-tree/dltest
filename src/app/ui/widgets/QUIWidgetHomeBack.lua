@@ -1,6 +1,8 @@
 local QUIWidget = import(".QUIWidget")
 local QUIWidgetHomeBack = class("QUIWidgetHomeBack", QUIWidget)
 
+local QNotificationCenter = import("...controllers.QNotificationCenter")
+
 function QUIWidgetHomeBack:ctor(options)
     local fguiFile = "page_main"
     local resName = "home"
@@ -12,7 +14,6 @@ function QUIWidgetHomeBack:ctor(options)
     QUIWidgetHomeBack.super.ctor(self, fguiFile, resName, callbacks, options)
 
     self:extendEvent()
-
 end
 
 function QUIWidgetHomeBack:setBackBtnVisible(b)
@@ -24,15 +25,16 @@ function QUIWidgetHomeBack:setHomeBtnVisible(b)
 end
 
 function QUIWidgetHomeBack:_onTriggerHome(context)
-	print("--_onTriggerHome---")
+    QNotificationCenter.sharedNotificationCenter():triggerMainPageEvent(QNotificationCenter.EVENT_TRIGGER_HOME)
 end
 
 function QUIWidgetHomeBack:_onTriggerBack(context)
-	print("--_onTriggerBack---")
+    QNotificationCenter.sharedNotificationCenter():triggerMainPageEvent(QNotificationCenter.EVENT_TRIGGER_BACK)
 end
 
 function QUIWidgetHomeBack:_onTriggerDrop(context)
-	print("--_onTriggerDrop---")
+    local page = app:getNavigationManager():getController(app.mainUILayer):getTopPage()
+    page:setHomeDropVisible(true)
 end
 
 return QUIWidgetHomeBack

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<component size="1136,640">
+<component size="1136,640" opaque="false">
   <displayList>
     <component id="n6_mrrz" name="btn_home" src="mrrz1r" fileName="buttons/btn_home.xml" xy="130,5"/>
     <component id="n8_mrrz" name="btn_back" src="mrrz1s" fileName="buttons/btn_back.xml" xy="0,5"/>

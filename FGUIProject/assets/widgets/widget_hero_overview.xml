@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="210,540">
+  <displayList>
+    <image id="n1_o4hd" name="n1" src="o4hd2" fileName="images/sp_hunshi_di.png" xy="-6,-6"/>
+    <image id="n0_o4hd" name="n0" src="o4hd1" fileName="images/sp_hunshi_di_mengban.png" xy="7,244"/>
+    <component id="n2_o4hd" name="node_aptitude" src="o4hd1g" fileName="widgets/aptitude.xml" pkg="i0q9vkjp" xy="0,0" scale="0.4,0.4"/>
+    <component id="n4_o4hd" name="node_prefessional" src="o4hd1r" fileName="widgets/professional.xml" pkg="i0q9vkjp" xy="12,380"/>
+    <image id="n5_o4hd" name="n5" src="o4hd1s" fileName="images/tf_zhanli.png" pkg="i0q9vkjp" xy="8,415"/>
+    <text id="n6_o4hd" name="tf_force" xy="75,424" size="126,34" fontSize="24" color="#ff0000" strokeColor="#666666" text="1521212万"/>
+    <text id="n7_o4hd" name="tf_name" xy="49,380" size="76,34" fontSize="24" color="#ff0000" strokeColor="#666666" text="千仞雪"/>
+    <component id="n8_o4hd" name="node_soul_spirit" src="o4hd1w" fileName="widgets/soul_spirit_icon.xml" pkg="i0q9vkjp" xy="12,335"/>
+    <component id="n11_o4hd" name="node_mount" src="o4hd1x" fileName="widgets/mount_icon.xml" pkg="i0q9vkjp" xy="165,335"/>
+    <component id="n12_o4hd" name="node_artifact" src="o4hd1y" fileName="widgets/artifact_icon.xml" pkg="i0q9vkjp" xy="12,305"/>
+  </displayList>
+</component>

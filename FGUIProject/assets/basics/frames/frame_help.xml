@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,640">
+  <displayList>
+    <image id="n3_qpb0" name="n3" src="ly74x" fileName="images/common_paperdi.png" xy="568,320" pivot="0.5,0.5" anchor="true" size="860,480"/>
+    <image id="n4_qpb0" name="n4" src="ly74v" fileName="images/common_paper.png" xy="568,320" pivot="0.5,0.5" anchor="true" size="860,480"/>
+    <image id="n5_qpb0" name="n5" src="ly74w" fileName="images/sp_tittle_tip02.png" xy="568,75" pivot="0.5,0" anchor="true">
+      <relation target="n4_qpb0" sidePair="left-center,top-top"/>
+    </image>
+    <text id="n6_qpb0" name="title" xy="568,80" pivot="0.5,0" anchor="true" size="62,34" fontSize="24" color="#ffffcc" text="帮  助">
+      <relation target="n5_qpb0" sidePair="left-center,top-top"/>
+    </text>
+    <component id="n8_qpb0" name="closeButton" src="mc9p3" fileName="buttons/btn_close.xml" xy="928,80">
+      <relation target="n4_qpb0" sidePair="right-right,top-top"/>
+    </component>
+  </displayList>
+</component>

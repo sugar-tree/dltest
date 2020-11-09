@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<packageDescription id="iec90rl1">
-  <resources>
-    <component id="hu250" name="main.xml" path="/" exported="true"/>
-    <image id="hu251" name="login_newqj.png" path="/"/>
-    <image id="hu253" name="sanctuary_arrange.jpg" path="/"/>
-  </resources>
-  <publish name=""/>
-</packageDescription>

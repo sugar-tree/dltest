@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="532,300">
+  <displayList>
+    <image id="n5_ly74" name="n5" src="ly74x" fileName="images/common_paperdi.png" xy="266,150" pivot="0.5,0.5" anchor="true" size="530,300"/>
+    <image id="n3_ly74" name="n3" src="ly74v" fileName="images/common_paper.png" xy="266,150" pivot="0.5,0.5" anchor="true" size="532,300"/>
+    <image id="n4_ly74" name="n4" src="ly74w" fileName="images/sp_tittle_tip02.png" xy="266,-5" pivot="0.5,0" anchor="true"/>
+    <text id="n6_ly74" name="n6" xy="266,0" pivot="0.5,0" anchor="true" size="100,34" fontSize="24" color="#ffffcc" text="系统提示"/>
+  </displayList>
+</component>

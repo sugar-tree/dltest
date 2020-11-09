@@ -1,5 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <packageDescription id="i0q9vkjp">
-  <resources/>
+  <resources>
+    <component id="mc9p3" name="btn_close.xml" path="/buttons/" exported="true"/>
+    <component id="ly7414" name="btn_normal_orange.xml" path="/buttons/" exported="true"/>
+    <component id="ly7415" name="btn_normal_red.xml" path="/buttons/" exported="true"/>
+    <component id="ly7416" name="btn_normal_yellow.xml" path="/buttons/" exported="true"/>
+    <image id="tibvg" name="S_0.png" path="/fonts/font1/"/>
+    <image id="tibvh" name="S_1.png" path="/fonts/font1/"/>
+    <image id="tibvi" name="S_2.png" path="/fonts/font1/"/>
+    <image id="tibvj" name="S_3.png" path="/fonts/font1/"/>
+    <image id="tibvk" name="S_4.png" path="/fonts/font1/"/>
+    <image id="tibvl" name="S_5.png" path="/fonts/font1/"/>
+    <image id="tibvm" name="S_6.png" path="/fonts/font1/"/>
+    <image id="tibvn" name="S_7.png" path="/fonts/font1/"/>
+    <image id="tibvo" name="S_8.png" path="/fonts/font1/"/>
+    <image id="tibvp" name="S_9.png" path="/fonts/font1/"/>
+    <font id="ltf95" name="Font1.fnt" path="/fonts/" exported="true"/>
+    <image id="mc9p2" name="dialog_frame.png" path="/images/" exported="true" scale="9grid" scale9grid="23,23,46,46" gridTile="1"/>
+    <image id="ly74v" name="common_paper.png" path="/images/" exported="true" scale="9grid" scale9grid="60,60,30,40"/>
+    <image id="ly74w" name="sp_tittle_tip02.png" path="/images/" exported="true"/>
+    <image id="ly74x" name="common_paperdi.png" path="/images/" exported="true" scale="9grid" scale9grid="73,75,7,5"/>
+    <image id="ly74y" name="btn_close.png" path="/images/" exported="true"/>
+    <image id="ly7410" name="btn_normal_yellow.png" path="/images/" exported="true"/>
+    <image id="ly7412" name="btn_normal_orange.png" path="/images/" exported="true"/>
+    <image id="ly7413" name="btn_normal_red.png" path="/images/" exported="true"/>
+    <component id="uguxs" name="frame_help.xml" path="/frames/" exported="true"/>
+    <component id="ly74u" name="frame_confirm.xml" path="/frames/" exported="true"/>
+    <image id="o4hd17" name="aptitude_b.png" path="/images/" exported="true"/>
+    <image id="o4hd18" name="aptitude_c_small.png" path="/images/" exported="true"/>
+    <image id="o4hd19" name="aptitude_c.png" path="/images/" exported="true"/>
+    <image id="o4hd1a" name="aptitude_s_small.png" path="/images/" exported="true"/>
+    <image id="o4hd1b" name="aptitude_s.png" path="/images/" exported="true"/>
+    <image id="o4hd1c" name="aptitude_ss_small.png" path="/images/" exported="true"/>
+    <image id="o4hd1d" name="aptitude_ss.png" path="/images/" exported="true"/>
+    <image id="o4hd1e" name="aptitude_ssx_small.png" path="/images/" exported="true"/>
+    <image id="o4hd1f" name="aptitude_ssx.png" path="/images/" exported="true"/>
+    <component id="o4hd1g" name="aptitude.xml" path="/widgets/" exported="true"/>
+    <image id="o4hd1h" name="aptitude_a_small.png" path="/images/" exported="true"/>
+    <image id="o4hd1i" name="aptitude_a.png" path="/images/" exported="true"/>
+    <image id="o4hd1j" name="aptitude_ax_small.png" path="/images/" exported="true"/>
+    <image id="o4hd1k" name="aptitude_ax.png" path="/images/" exported="true"/>
+    <image id="o4hd1l" name="aptitude_b_small.png" path="/images/" exported="true"/>
+    <component id="o4hd1m" name="aptitude_small.xml" path="/widgets/" exported="true"/>
+    <image id="o4hd1n" name="sp_naima.png" path="/images/" exported="true"/>
+    <image id="o4hd1o" name="sp_fagong.png" path="/images/" exported="true"/>
+    <image id="o4hd1p" name="sp_fangyu.png" path="/images/" exported="true"/>
+    <image id="o4hd1q" name="sp_gongji.png" path="/images/" exported="true"/>
+    <component id="o4hd1r" name="professional.xml" path="/widgets/" exported="true"/>
+    <image id="o4hd1s" name="tf_zhanli.png" path="/images/" exported="true"/>
+    <image id="o4hd1t" name="sp_zhuangbei_jiahao.png" path="/images/"/>
+    <image id="o4hd1u" name="sp_zhuangbei_di.png" path="/images/"/>
+    <image id="o4hd1v" name="sp_zhuangbei_di_suo.png" path="/images/"/>
+    <component id="o4hd1w" name="soul_spirit_icon.xml" path="/widgets/" exported="true"/>
+    <component id="o4hd1x" name="mount_icon.xml" path="/widgets/" exported="true"/>
+    <component id="o4hd1y" name="artifact_icon.xml" path="/widgets/" exported="true"/>
+  </resources>
   <publish name=""/>
 </packageDescription>

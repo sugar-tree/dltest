@@ -22,6 +22,8 @@ function MyApp:ctor()
     MyApp.super.ctor(self)
 
     cc.FileUtils:getInstance():addSearchPath("res/")
+    fairygui.UIPackage:addPackage("fairygui/basics")
+    fairygui.UIPackage:addPackage("fairygui/widgets")
     self.log = QLogFile:new()
     self._uiScene = MainScene.new()
     display.replaceScene(self._uiScene)
@@ -42,6 +44,11 @@ end
 
 function MyApp:getRairyRoot()
     return self.fairyRoot
+end
+
+function MyApp:popTopWindew()
+    local topWindow = self.fairyRoot:getTopWindow()
+    self.fairyRoot:hideWindow(topWindow)
 end
 
 function MyApp:getNavigationManager()

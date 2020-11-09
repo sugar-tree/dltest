@@ -55,6 +55,20 @@
     <component id="mrrz1r" name="btn_home.xml" path="/buttons/"/>
     <component id="mrrz1s" name="btn_back.xml" path="/buttons/"/>
     <component id="mrrz1t" name="btn_drop.xml" path="/buttons/"/>
+    <image id="m0gp1u" name="sp_scaling_bj.png" path="/images/common/" scale="9grid" scale9grid="0,0,108,119"/>
+    <image id="m0gp1w" name="btn_menu_shangla.png" path="/images/buttons/"/>
+    <image id="m0gp1x" name="btn_drop_hero.png" path="/images/buttons/"/>
+    <image id="m0gp1y" name="btn_drop_mount.png" path="/images/buttons/"/>
+    <image id="m0gp1z" name="btn_drop_bag.png" path="/images/buttons/"/>
+    <image id="m0gp20" name="btn_drop_achieve.png" path="/images/buttons/"/>
+    <image id="m0gp21" name="btn_drop_task.png" path="/images/buttons/"/>
+    <component id="m0gp22" name="drop.xml" path="/" exported="true"/>
+    <component id="m0gp23" name="btn_drop_up.xml" path="/buttons/"/>
+    <component id="m0gp24" name="btn_drop_hero.xml" path="/buttons/"/>
+    <component id="m0gp25" name="btn_drop_mount.xml" path="/buttons/"/>
+    <component id="m0gp26" name="btn_drop_bag.xml" path="/buttons/"/>
+    <component id="m0gp27" name="btn_drop_task.xml" path="/buttons/"/>
+    <component id="m0gp28" name="btn_drop_achieve.xml" path="/buttons/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

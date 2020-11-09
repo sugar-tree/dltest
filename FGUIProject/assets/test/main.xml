@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<component size="1136,640">
-  <displayList>
-    <image id="n0_hu25" name="n0" src="hu251" fileName="login_newqj.png" xy="-222,-261"/>
-    <image id="n1_hu25" name="n1" src="hu252" fileName="sanctuary.jpg" xy="59,-150" pkg="op2p5mu4"/>
-    <image id="n2_hu25" name="n2" src="hu253" fileName="sanctuary_arrange.jpg" xy="135,-412"/>
-  </displayList>
-</component>

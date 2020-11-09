@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,640" pivot="0.5,0.5" opaque="false" designImage="ui://i0q9vkjpltf95">
+  <controller name="c1" alias="ccc" exported="true" pages="0,,1,,2," selected="0"/>
+  <displayList>
+    <component id="n17_qpb0" name="frame" src="ly74u" fileName="frames/frame_confirm.xml" xy="302,170" pkg="i0q9vkjp"/>
+    <component id="n15_ly74" name="btn_confirm" src="ly7416" fileName="buttons/btn_normal_yellow.xml" xy="683,396" pkg="i0q9vkjp">
+      <relation target="" sidePair=""/>
+      <relation target="n17_qpb0" sidePair=""/>
+    </component>
+    <component id="n14_ly74" name="btn_cancel" src="ly7414" fileName="buttons/btn_normal_orange.xml" xy="452,396" pkg="i0q9vkjp">
+      <relation target="n17_qpb0" sidePair=""/>
+    </component>
+    <text id="n16_ly74" name="tf_desc" xy="358,250" size="420,66" fontSize="24" color="#663300" align="center" vAlign="middle" autoSize="height" text="能否打好啦更快的骄傲了爱上了对方的拉开房间爱丽丝电话费拉可适当"/>
+  </displayList>
+</component>

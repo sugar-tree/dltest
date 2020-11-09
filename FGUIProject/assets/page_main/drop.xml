@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,640" opaque="false">
+  <displayList>
+    <image id="n0_m0gp" name="n0" src="m0gp1u" fileName="images/common/sp_scaling_bj.png" xy="1020,60" size="108,500"/>
+    <component id="n1_m0gp" name="btn_drop_up" src="m0gp23" fileName="buttons/btn_drop_up.xml" xy="1020,5"/>
+    <component id="n2_m0gp" name="btn_drop_hero" src="m0gp24" fileName="buttons/btn_drop_hero.xml" xy="1020,80"/>
+    <component id="n3_m0gp" name="btn_drop_mount" src="m0gp25" fileName="buttons/btn_drop_mount.xml" xy="1020,170"/>
+    <component id="n4_m0gp" name="btn_drop_task" src="m0gp27" fileName="buttons/btn_drop_task.xml" xy="1020,260"/>
+    <component id="n5_m0gp" name="btn_drop_bag" src="m0gp26" fileName="buttons/btn_drop_bag.xml" xy="1020,350"/>
+  </displayList>
+</component>

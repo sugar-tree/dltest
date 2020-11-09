@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="1136,640" opaque="false" designImage="ui://i0q9vkjpltf95">
+  <controller name="c1" alias="ccc" exported="true" pages="0,,1,,2," selected="0"/>
+  <displayList>
+    <component id="n12_ugux" name="frame" src="uguxs" fileName="frames/frame_help.xml" xy="0,0" pkg="i0q9vkjp"/>
+    <text id="n13_qpb0" name="tf_desc" xy="190,125" size="100,34" fontSize="24" color="#996600" text="我是帮助">
+      <relation target="n12_ugux" sidePair="left-left,top-top"/>
+    </text>
+    <component id="n14_qpb0" name="btn_tip" src="ly7415" fileName="buttons/btn_normal_red.xml" xy="568,320" pkg="i0q9vkjp"/>
+  </displayList>
+</component>

@@ -2,7 +2,11 @@
 <packageDescription id="op2p5mu4">
   <resources>
     <component id="mc9p0" name="main.xml" path="/" exported="true"/>
-    <image id="hu252" name="sanctuary.jpg" path="/"/>
+    <image id="hu252" name="sanctuary.jpg" path="/images/"/>
+    <image id="o4hd3" name="sp_hunshi_bj.jpg" path="/images/"/>
+    <component id="o4hd4" name="dialog_hero_overview.xml" path="/dialogs/" exported="true"/>
+    <image id="o4hd5" name="handbook_hunshitujian.png" path="/images/"/>
+    <component id="o4hd6" name="btn_hero_handbook.xml" path="/buttons/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

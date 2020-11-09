@@ -1,8 +1,10 @@
 local QUIPage = import(".QUIPage")
 local QUIPageMainMenu = class("QUIPageMainMenu", QUIPage)
 
-local QUIWidgetHomeBack = import("..widgets.QUIWidgetHomeBack")
 local QUIViewController = import("..QUIViewController")
+local QUIWidgetHomeBack = import("..widgets.QUIWidgetHomeBack")
+local QUIWidgetHomeDrop = import("..widgets.QUIWidgetHomeDrop")
+local QUIWindowConfirm = import("..windows.QUIWindowConfirm")
 
 
 function QUIPageMainMenu:ctor(options)
@@ -15,17 +17,18 @@ function QUIPageMainMenu:ctor(options)
     QUIPageMainMenu.super.ctor(self, fguiFile, resName, callbacks, options)
 
     self._isMoveing = false
+    self._isTouchBegin = false
+    self._lastPositionX = 0
     self._totalWidth = self._fguiOwner.node_near:getWidth()
     self._minLeftX = self._fguiOwner.node_near:getX()
 
     self._homeBack = QUIWidgetHomeBack.new()
     self._homeBack:setPosition(0, -display.height)
-    self:addFairyChild(self._homeBack, 100)
+    self:addTopFairyChild(self._homeBack)
 
-    -- self._homeDrop = QUIWidgetHomeDrop.new()
-    -- self._homeDrop:setPosition(0, -display.height)
-    -- self:addFairyChild(self._homeDrop)
-    -- self._fguiOwner.n108:displayObject():setLocalZOrder(1000)
+    self._homeDrop = QUIWidgetHomeDrop.new()
+    self._homeDrop:setPosition(0, -display.height)
+    self:addTopFairyChild(self._homeDrop)
 end
 
 function QUIPageMainMenu:viewDidAppear()
@@ -37,6 +40,7 @@ function QUIPageMainMenu:viewDidAppear()
 
     self:setBackBtnVisible(false)
     self:setHomeBtnVisible(false)
+    self:setHomeDropVisible(false)
 end
 
 function QUIPageMainMenu:viewWillDisappear()
@@ -59,14 +63,15 @@ function QUIPageMainMenu:_onTouchEvent(event)
         self._midPositionX = self._fguiOwner.node_mid:getX()
         self._nearPositionX = self._fguiOwner.node_near:getX()
         self:_removeAction()
-        return true
+        self._isTouchBegin = true
     elseif eventType == fairygui.UIEventType.TouchMove then
         self:screenMove(posX - self._lastPositionX, false)
         if not self._isMoveing and math.abs(posX - self._lastPositionX) > 10 then
             self._isMoveing = true
         end
-    elseif eventType == fairygui.UIEventType.TouchEnd then
+    elseif self._isTouchBegin and eventType == fairygui.UIEventType.TouchEnd then
         event:uncaptureTouch()
+        self._isTouchBegin = false
         self:screenMove(posX - self._lastPositionX, false)
         self:getRoot():performWithDelay(function ()
             self._isMoveing = false
@@ -138,33 +143,20 @@ function QUIPageMainMenu:setHomeBtnVisible(b)
     self._homeBack:setHomeBtnVisible(b)
 end
 
-function QUIPageMainMenu:setScalingVisible(b)
-    if self._scaling ~= nil then
-        self._scaling:setVisible(b)
-    end
-end
-
-function QUIPageMainMenu:getScalingVisible()
-    if self._scaling ~= nil then
-        return self._scaling:isVisible()
-    end
+function QUIPageMainMenu:setHomeDropVisible(b)
+    self._homeDrop:getView():setVisible(b)
 end
 
 function QUIPageMainMenu:setAllUIVisible(b)
-    if self._scaling ~= nil then
-        self._scaling:setVisible(true)
+    if self._homeDrop ~= nil then
+        self._homeDrop:setVisible(true)
     end
-    -- if b then 
-    --     self.topBar:showWithMainPage()
-    -- else
-    --     self.topBar:hideAll()
-    -- end
 end
 
 --回退到主界面
 function QUIPageMainMenu:onBackPage()
     self:setAllUIVisible(true)
-    self:setScalingVisible(true)
+    self:setHomeDropVisible(false)
     self:setBackBtnVisible(false)
     self:setHomeBtnVisible(false)
 end
@@ -175,10 +167,6 @@ end
 
 function QUIPageMainMenu:_onTriggerSunwell(context)
     app:getNavigationManager():pushViewController(app.mainUILayer, {uiType = QUIViewController.TYPE_DIALOG, uiClass = "QUIDialogSunwell"})
-end
-
-function QUIPageMainMenu:_onTriggerHero(context)
-    app:getNavigationManager():pushViewController(app.middleLayer, {uiType = QUIViewController.TYPE_DIALOG, uiClass = "QUIDialogSunwell"})
 end
 
 return QUIPageMainMenu

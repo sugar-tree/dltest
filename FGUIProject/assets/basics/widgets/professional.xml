@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="30,30">
+  <displayList>
+    <image id="n0_o4hd" name="n0" src="o4hd1o" fileName="images/sp_fagong.png" xy="0,0" group="n4_o4hd"/>
+    <group id="n4_o4hd" name="node_professional_dps_m" xy="0,0" size="30,30" advanced="true"/>
+    <image id="n3_o4hd" name="n3" src="o4hd1n" fileName="images/sp_naima.png" xy="0,0" group="n5_o4hd"/>
+    <group id="n5_o4hd" name="node_professional_health" xy="0,0" size="30,30" advanced="true"/>
+    <image id="n1_o4hd" name="n1" src="o4hd1p" fileName="images/sp_fangyu.png" xy="0,0" group="n6_o4hd"/>
+    <group id="n6_o4hd" name="node_professional_t" xy="0,0" size="30,30" advanced="true"/>
+    <image id="n2_o4hd" name="n2" src="o4hd1q" fileName="images/sp_gongji.png" xy="0,0" group="n7_o4hd"/>
+    <group id="n7_o4hd" name="node_professional_dps_p" xy="0,0" size="30,30" advanced="true"/>
+  </displayList>
+</component>

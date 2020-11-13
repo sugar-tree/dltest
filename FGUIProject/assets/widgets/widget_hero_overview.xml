@@ -2,14 +2,21 @@
 <component size="210,540">
   <displayList>
     <image id="n1_o4hd" name="n1" src="o4hd2" fileName="images/sp_hunshi_di.png" xy="-6,-6"/>
+    <loader id="n13_pkgv" name="node_card" xy="8,7" size="196,532"/>
     <image id="n0_o4hd" name="n0" src="o4hd1" fileName="images/sp_hunshi_di_mengban.png" xy="7,244"/>
     <component id="n2_o4hd" name="node_aptitude" src="o4hd1g" fileName="widgets/aptitude.xml" pkg="i0q9vkjp" xy="0,0" scale="0.4,0.4"/>
     <component id="n4_o4hd" name="node_prefessional" src="o4hd1r" fileName="widgets/professional.xml" pkg="i0q9vkjp" xy="12,380"/>
     <image id="n5_o4hd" name="n5" src="o4hd1s" fileName="images/tf_zhanli.png" pkg="i0q9vkjp" xy="8,415"/>
-    <text id="n6_o4hd" name="tf_force" xy="75,424" size="126,34" fontSize="24" color="#ff0000" strokeColor="#666666" text="1521212万"/>
-    <text id="n7_o4hd" name="tf_name" xy="49,380" size="76,34" fontSize="24" color="#ff0000" strokeColor="#666666" text="千仞雪"/>
-    <component id="n8_o4hd" name="node_soul_spirit" src="o4hd1w" fileName="widgets/soul_spirit_icon.xml" pkg="i0q9vkjp" xy="12,335"/>
-    <component id="n11_o4hd" name="node_mount" src="o4hd1x" fileName="widgets/mount_icon.xml" pkg="i0q9vkjp" xy="165,335"/>
-    <component id="n12_o4hd" name="node_artifact" src="o4hd1y" fileName="widgets/artifact_icon.xml" pkg="i0q9vkjp" xy="12,305"/>
+    <text id="n6_o4hd" name="tf_force" xy="75,424" pivot="0.5,0.5" size="123,34" font="ui://i0q9vkjppkgv1z" fontSize="24" color="#ff0000" strokeColor="#666666" text="1521212万"/>
+    <text id="n7_o4hd" name="tf_name" xy="49,380" pivot="0,0.5" size="76,34" font="ui://i0q9vkjppkgv1z" fontSize="24" color="#ff0000" strokeColor="#666666" text="千仞雪"/>
+    <component id="n21_nlai" name="node_grade_star" src="nlai24" fileName="widgets/node_empty.xml" pkg="i0q9vkjp" xy="16,75"/>
+    <image id="n15_pkgv" name="n15" src="pkgv3" fileName="images/sp_dengji_di.png" xy="151,8" group="n17_pkgv"/>
+    <text id="n16_pkgv" name="tf_level" xy="160,10" pivot="0.5,0.5" size="39,29" group="n17_pkgv" font="ui://i0q9vkjppkgv1z" fontSize="20" color="#ffffff" strokeColor="#666666" text="120"/>
+    <group id="n17_pkgv" name="n17" xy="151,8" size="53,31" advanced="true"/>
+    <component id="n25_nlai" name="node_soul_spirit" src="nlai24" fileName="widgets/node_empty.xml" pkg="i0q9vkjp" xy="30,349" pivot="0.5,0.5" anchor="true"/>
+    <component id="n24_nlai" name="node_artifact" src="nlai24" fileName="widgets/node_empty.xml" pkg="i0q9vkjp" xy="16,305" pivot="0.5,0.5"/>
+    <component id="n23_nlai" name="node_mount" src="nlai24" fileName="widgets/node_empty.xml" pkg="i0q9vkjp" xy="165,335"/>
+    <component id="n27_nlai" name="node_stone" src="nlai24" fileName="widgets/node_empty.xml" pkg="i0q9vkjp" xy="16,465"/>
+    <component id="n26_nlai" name="node_equip" src="nlai24" fileName="widgets/node_empty.xml" pkg="i0q9vkjp" xy="16,500"/>
   </displayList>
 </component>

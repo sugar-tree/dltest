@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="36,36">
+  <displayList>
+    <loader id="n12_pkgv" name="sp_grade_1" xy="2,2" size="32,32" url="ui://i0q9vkjppkgv21"/>
+    <loader id="n13_pkgv" name="sp_grade_2" xy="2,22" size="32,32" url="ui://i0q9vkjppkgv21"/>
+    <loader id="n14_pkgv" name="sp_grade_3" xy="2,42" size="32,32" url="ui://i0q9vkjppkgv21"/>
+    <loader id="n15_pkgv" name="sp_grade_4" xy="2,62" size="32,32" url="ui://i0q9vkjppkgv21"/>
+    <loader id="n16_pkgv" name="sp_grade_5" xy="2,82" size="32,32" url="ui://i0q9vkjppkgv21"/>
+  </displayList>
+</component>

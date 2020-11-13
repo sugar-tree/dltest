@@ -5,23 +5,27 @@ end)
 local QUIViewController = import("..ui.QUIViewController")
 
 function MainScene:ctor()
+	-- self:showScrollView()
+	self:showPageMainUI()
+end
+
+function MainScene:showScrollView()
 	local tests = {
-		-- "Test_NodeFrameEvent",
-		-- "Test_NodeEvent",
-		-- "Test_KeypadEvent",
-		-- "Test_NodeTouchEvent",
-		-- "Test_AccelerometerEvent",
-		-- "Test_CocosStudio",
-		-- "Test_Audio",
-		-- "Test_FairyGUI",
-		-- "Test_Network",
-		-- "Test_WebSocket",
-		-- "Test_LuaProtobuf",
-		-- "Test_Spine",
-		-- "Test_RichText",
-		-- "Test_TMXTiledMap",
-		-- "Test_AsyncTCP",
-		"QUIPageMainMenu",
+		"Test_NodeFrameEvent",
+		"Test_NodeEvent",
+		"Test_KeypadEvent",
+		"Test_NodeTouchEvent",
+		"Test_AccelerometerEvent",
+		"Test_CocosStudio",
+		"Test_Audio",
+		"Test_FairyGUI",
+		"Test_Network",
+		"Test_WebSocket",
+		"Test_LuaProtobuf",
+		"Test_Spine",
+		"Test_RichText",
+		"Test_TMXTiledMap",
+		"Test_AsyncTCP",
 	}
 
 	local scrollView = ccui.ScrollView:create()
@@ -58,6 +62,12 @@ function MainScene:ctor()
 		scrollHeight = totalHeight
 	end
 	scrollView:setContentSize(cc.size(display.width, scrollHeight))
+end
+
+function MainScene:showPageMainUI()
+	self:schedule(function()
+    	app:getNavigationManager():pushViewController(app.mainUILayer, {uiType=QUIViewController.TYPE_PAGE, uiClass="QUIPageMainMenu"})
+	end, 0)
 end
 
 function MainScene:openScrollView()

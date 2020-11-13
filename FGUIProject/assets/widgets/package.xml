@@ -4,6 +4,7 @@
     <component id="o4hd0" name="widget_hero_overview.xml" path="/" exported="true"/>
     <image id="o4hd1" name="sp_hunshi_di_mengban.png" path="/images/"/>
     <image id="o4hd2" name="sp_hunshi_di.png" path="/images/"/>
+    <image id="pkgv3" name="sp_dengji_di.png" path="/images/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

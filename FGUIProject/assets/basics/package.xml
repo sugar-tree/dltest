@@ -48,12 +48,21 @@
     <image id="o4hd1q" name="sp_gongji.png" path="/images/" exported="true"/>
     <component id="o4hd1r" name="professional.xml" path="/widgets/" exported="true"/>
     <image id="o4hd1s" name="tf_zhanli.png" path="/images/" exported="true"/>
-    <image id="o4hd1t" name="sp_zhuangbei_jiahao.png" path="/images/"/>
-    <image id="o4hd1u" name="sp_zhuangbei_di.png" path="/images/"/>
-    <image id="o4hd1v" name="sp_zhuangbei_di_suo.png" path="/images/"/>
+    <image id="o4hd1t" name="sp_zhuangbei_jiahao.png" path="/images/" exported="true"/>
+    <image id="o4hd1u" name="sp_zhuangbei_di.png" path="/images/" exported="true"/>
+    <image id="o4hd1v" name="sp_zhuangbei_di_suo.png" path="/images/" exported="true"/>
     <component id="o4hd1w" name="soul_spirit_icon.xml" path="/widgets/" exported="true"/>
     <component id="o4hd1x" name="mount_icon.xml" path="/widgets/" exported="true"/>
     <component id="o4hd1y" name="artifact_icon.xml" path="/widgets/" exported="true"/>
+    <font id="pkgv1z" name="FZZhunYuan-M02S.ttf" path="/fonts/" renderMode="" samplePointSize="16"/>
+    <image id="pkgv20" name="one_moon.png" path="/images/" exported="true"/>
+    <image id="pkgv21" name="one_star.png" path="/images/" exported="true"/>
+    <image id="pkgv22" name="one_sun.png" path="/images/" exported="true"/>
+    <component id="pkgv23" name="grade_star.xml" path="/widgets/" exported="true"/>
+    <component id="nlai24" name="node_empty.xml" path="/widgets/" exported="true"/>
+    <component id="nlai25" name="part_icon.xml" path="/widgets/" exported="true"/>
+    <component id="nlai26" name="stone_icon.xml" path="/widgets/" exported="true"/>
+    <image id="nlai27" name="sp_hungu_di.png" path="/images/"/>
   </resources>
   <publish name=""/>
 </packageDescription>

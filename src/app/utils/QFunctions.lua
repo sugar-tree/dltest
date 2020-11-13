@@ -657,34 +657,6 @@ function q.timeToMonthDayHourMin(time)
     return string.format("%d", dateTime.month)..T("QFunctions_wordKey_13", "月")..string.format("%02d", dateTime.day)..T("QUIDialogGameCalendar_wordKey_2", "日")..string.format("%02d", dateTime.hour)..":"..string.format("%02d", dateTime.min)
 end
 
---[[
-    设置品质
-    @param nodeOwner 品质ccb节点
-    @param aptitudeStr 当前品质字符 sss, ss, s,  a+, a,  b,  c
-    @param aptitudeNum 当前品质数字 23, 22, 20, 18, 15, 12, 10
-]]
-function q.setAptitudeShow(nodeOwner, aptitudeStr, aptitudeNum)
-    if nodeOwner == nil then return end
-    local aptitudeInfo = nil
-    for _, value in ipairs(HERO_SABC) do
-        local node = nodeOwner["pingzhi_"..value.lower]
-        if node then
-            node:setVisible(false)
-        end
-        if aptitudeStr and aptitudeStr == value.lower then
-            aptitudeInfo = value
-        elseif aptitudeNum and aptitudeNum == value.aptitude then
-            aptitudeInfo = value
-        end
-    end
-    
-    -- 未找到品质
-    if not aptitudeInfo then return end
-    if nodeOwner["pingzhi_"..aptitudeInfo.lower] then
-        nodeOwner["pingzhi_"..aptitudeInfo.lower]:setVisible(true)
-    end
-end
-
 function q.setScreenScale(node, screenScale)
     local scale = 1.0
     local parent = node:getParent()
@@ -2487,4 +2459,57 @@ function q.timeWeekComm(y,m,d)
         ["6"] = "星期日",
     }
     return weekTab[tostring(iWeek)] 
+end
+
+--[[
+    设置品质
+    @param nodeOwner 品质fgui节点
+    @param aptitudeStr 当前品质字符 sss, ss, s,  a+, a,  b,  c
+    @param aptitudeNum 当前品质数字 23, 22, 20, 18, 15, 12, 10
+]]
+function q.setAptitudeShow(nodeOwner, aptitudeStr, aptitudeNum)
+    if nodeOwner == nil then return end
+    local aptitudeInfo = nil
+    for _, value in ipairs(HERO_SABC) do
+        local node = nodeOwner[value.fgui]
+        if node then
+            node:setVisible(false)
+        end
+        if aptitudeStr and aptitudeStr == value.lower then
+            aptitudeInfo = value
+        elseif aptitudeNum and aptitudeNum == value.aptitude then
+            aptitudeInfo = value
+        end
+    end
+    
+    -- 未找到品质
+    if not aptitudeInfo then return end
+    if nodeOwner[aptitudeInfo.fgui] then
+        nodeOwner[aptitudeInfo.fgui]:setVisible(true)
+    end
+end
+--[[
+    设置职业
+    @param nodeOwner 品质fgui节点
+    @param aptitudeStr 当前品质字符 sss, ss, s,  a+, a,  b,  c
+    @param aptitudeNum 当前品质数字 23, 22, 20, 18, 15, 12, 10
+]]
+function q.setProfessionalShow(nodeOwner, funcIcon)
+    if nodeOwner == nil then return end
+    local telentInfo = nil
+    for _, value in ipairs(HERO_TALENT_CONFIG) do
+        local node = nodeOwner[value.fgui]
+        if node then
+            node:setVisible(false)
+        end
+        if funcIcon and funcIcon == value.func_icon then
+            telentInfo = value
+        end
+    end
+    
+    -- 未找到品质
+    if not telentInfo then return end
+    if nodeOwner[telentInfo.fgui] then
+        nodeOwner[telentInfo.fgui]:setVisible(true)
+    end
 end

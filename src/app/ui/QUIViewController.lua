@@ -1,5 +1,6 @@
 
 local QUIViewController = class("QUIViewController")
+local QFairyGUILoad = import("..utils.QFairyGUILoad")
 
 QUIViewController.TYPE_PAGE = "UI_TYPE_PAGE"
 QUIViewController.TYPE_DIALOG = "UI_TYPE_DIALOG"
@@ -19,27 +20,11 @@ function QUIViewController:ctor(sType, fguiFile, resName, callbacks, options)
     self._view:addChild(self._topView)
     
     -- guiView
-    self._gComponent = nil
     if fguiFile and resName then
-        fairygui.UIPackage:addPackage("fairygui/"..fguiFile)
-        self._gComponent = fairygui.UIPackage:createObject(fguiFile, resName)
-        if self._gComponent == nil then
-            assert(false, "load fguiFile:" .. fguiFile .. " faild!")
-        end
-
-        -- 回调函数
-        if callbacks ~= nil then
-            self:_setFGUICallbacks(callbacks)
-        end
-        
-        -- 节点
-        local childList = self._gComponent:getChildren()
-        for i, child in pairs(childList) do
-            self._fguiOwner[child.name] = child
-        end
+        self._gComponent = QFairyGUILoad.loadLua(fguiFile, resName, self._fguiOwner, callbacks)
         self._curView:addChild(self._gComponent)
     end
-
+    
     -- 前节点
     self._viewNode = cc.Node:create()
     self._curView:displayObject():addChild(self._viewNode, 1)
@@ -188,23 +173,6 @@ function QUIViewController:_removeViewSubView(view)
     end
 
     self._curView:removeChild(view)
-end
-
-function QUIViewController:_setFGUICallbacks(callbacks)
-    for i, v in pairs(callbacks) do
-        local childName = v.childName
-        local callback = v.callback
-        if childName ~= nil and callback ~= nil then
-            local btn = self._gComponent:getChild(childName)
-            if btn then
-                btn:addEventListener(fairygui.UIEventType.Click, function(context)
-                    callback(context)
-                end)
-            else
-                print("no btn named "..childName)
-            end
-        end
-    end
 end
 
 function QUIViewController:hide()
